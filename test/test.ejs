@@ -1,0 +1,36 @@
+<div id="<%= menu %>">
+<table>
+<tr>
+<td colspan="2">
+<center><%= title %></center>
+</td>
+</tr>
+<tr>
+<td>
+<%= equation %>
+</td>
+</tr>
+<tr>
+<td>
+<%- include('../partials/equationTop') %>
+</td>
+<td>
+<div id="<%= menu %>_result">
+</div>
+</td>
+</tr>
+</table>
+<script>
+{
+let menu = '<%= menu %>';
+QuestionClick(menu,'<%= equation %>','T1',true)
+<% for(let i = 0; i < actionList.length; i++) { %>
+select(menu,'item<%= actionList[i].item %>')
+<%= actionList[i].action %>(menu,true)
+<% } %>
+//todo check result of equation
+let result = testEquation(menu,'<%= result %>');
+displayResult(menu,result)
+}
+</script>
+</div>

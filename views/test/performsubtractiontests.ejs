@@ -1,0 +1,169 @@
+<html>
+<head>
+<script src="../edu-test.js"></script>
+<script src="../edu-helper.js"></script>
+<script src="../edu-interface.js"></script>
+<script src="../edu.js"></script>
+<style>
+body>table>tbody>tr>td{
+	vertical-align: top;
+	border-style: solid;
+}
+</style>
+</head>
+<body>
+
+<center><h1>Perform Subtraction</h1></center>
+<center>
+This is the list of tests for the perform subtraction function.
+<br>
+<a href="../test">Back</a>
+</center>
+
+<center><h3>Subtract Zero</h3></center> 
+<table>
+<tr>
+<td>
+<%- include('test',{title: 'sub zero right',menu: 'zero_sub_1',equation: 'x=2-0',actionList: [{item: '2',action: 'preformSubtract'}],result: 'x=2'}); -%>
+</td>
+<td>
+<%- include('test',{title: 'sub zero left',menu: 'zero_sub_2',equation: 'x=0-4',actionList: [{item: '2',action: 'preformSubtract'}],result: 'x=-4'}); -%>
+</td>
+<td>
+<%- include('test',{title: 'zero far left',menu: 'zero_sub_3',equation: 'x=0-4-1',actionList: [{item: '2',action: 'preformSubtract'}],result: 'x=-4-1'}); -%>
+</td>
+<td>
+<%- include('test',{title: 'zero center left',menu: 'zero_sub_4',equation: 'x=1-0-4',actionList: [{item: '2',action: 'preformSubtract'}],result: 'x=1-4'}); -%>
+</td>
+<td>
+<%- include('test',{title: 'zero center right',menu: 'zero_sub_5',equation: 'x=1-0-4',actionList: [{item: '4',action: 'preformSubtract'}],result: 'x=1-4'}); -%>
+</td>
+<td>
+<%- include('test',{title: 'zero far right',menu: 'zero_sub_6',equation: 'x=1-4-0',actionList: [{item: '4',action: 'preformSubtract'}],result: 'x=1-4'}); -%>
+</td>
+</tr>
+<tr>
+<td>
+<%- include('test',{title: 'zero variable right',menu: 'zero_sub_7',equation: 'x=x-0',actionList: [{item: '2',action: 'preformSubtract'}],result: 'x=x'}); -%>
+</td>
+<td>
+<%- include('test',{title: 'zero variable left',menu: 'zero_sub_8',equation: 'x=0-x',actionList: [{item: '2',action: 'preformSubtract'}],result: 'x=-1*x'}); -%>
+</td>
+</tr>
+</table>
+
+<center><h3>sub numbers</h3></center> 
+<table>
+<tr>
+<td>
+<%- include('test',{title: 'sub two numbers',menu: 'simple_sub_1',equation: 'x=8-3',actionList: [{item: '2',action: 'preformSubtract'}],result: 'x=5'}); -%>
+</td>
+<td>
+<%- include('test',{title: 'sub two numbers',menu: 'simple_sub_2',equation: 'x=2-3',actionList: [{item: '2',action: 'preformSubtract'}],result: 'x=-1'}); -%>
+</td>
+<td>
+<%- include('test',{title: 'sub two numbers',menu: 'simple_sub_3',equation: 'x=-8-3',actionList: [{item: '2',action: 'preformSubtract'}],result: 'x=-11'}); -%>
+</td>
+<td>
+<%- include('test',{title: 'sub two numbers',menu: 'simple_sub_4',equation: 'x=-8--3',actionList: [{item: '2',action: 'preformSubtract'}],result: 'x=-5'}); -%>
+</td>
+<td>
+<%- include('test',{title: 'sub two numbers',menu: 'simple_sub_5',equation: 'x=8--3',actionList: [{item: '2',action: 'preformSubtract'}],result: 'x=11'}); -%>
+</td>
+</tr>
+<tr>
+<td>
+<%- include('test',{title: 'sub number middle',menu: 'simple_sub_6',equation: 'x=2-7-6-4',actionList: [{item: '4',action: 'preformSubtract'}],result: 'x=2+-13-4'}); -%>
+</td>
+<td>
+<%- include('test',{title: 'sub number middle',menu: 'simple_sub_7',equation: 'x=2+7-6-4',actionList: [{item: '4',action: 'preformSubtract'}],result: 'x=2+1-4'}); -%>
+</td>
+</tr>
+</table>
+
+<center><h3>sub variables</h3></center> 
+<table>
+<tr>
+<td>
+<%- include('test',{title: 'sub two x',menu: 'variable_sub_1',equation: '5=x-x',actionList: [{item: '2',action: 'preformSubtract'}],result: '5=0'}); -%>
+</td>
+<td>
+<%- include('test',{title: 'sub two x',menu: 'variable_sub_1_2',equation: '5=x--x',actionList: [{item: '2',action: 'preformSubtract'}],result: '5=(1--1)*x'}); -%>
+</td>
+<td>
+<%- include('test',{title: 'sub two x',menu: 'variable_sub_2',equation: '5=-x-x',actionList: [{item: '4',action: 'preformSubtract'}],result: '5=(-1-1)*x'}); -%>
+</td>
+<td>
+<%- include('test',{title: 'sub two x',menu: 'variable_sub_2_2',equation: '5=-x--x',actionList: [{item: '4',action: 'preformSubtract'}],result: '5=(-1--1)*x'}); -%>
+</td>
+</tr>
+<tr>
+<td>
+<%- include('test',{title: 'sub x and num times x',menu: 'variable_sub_3',equation: '5=2*x-x',actionList: [{item: '4',action: 'preformSubtract'}],result: '5=(2-1)*x'}); -%>
+</td>
+<td>
+<%- include('test',{title: 'sub x and num times x',menu: 'variable_sub_4',equation: '5=-2*x-x',actionList: [{item: '4',action: 'preformSubtract'}],result: '5=(-2-1)*x'}); -%>
+</td>
+<td>
+<%- include('test',{title: 'sub x and num times x',menu: 'variable_sub_5',equation: '5=x-2*x',actionList: [{item: '2',action: 'preformSubtract'}],result: '5=(1-2)*x'}); -%>
+</td>
+<td>
+<%- include('test',{title: 'sub two num times x',menu: 'variable_sub_6',equation: '5=2*x-3*x',actionList: [{item: '4',action: 'preformSubtract'}],result: '5=(2-3)*x'}); -%>
+</td>
+</tr>
+</table>
+
+<center><h3>sub functions</h3></center> 
+<table>
+<tr>
+<td>
+<%- include('test',{title: 'sub two function',menu: 'function_sub_1',equation: '5=(x)-(x)',actionList: [{item: '3',action: 'preformSubtract'}],result: '5=0'}); -%>
+</td>
+<td>
+<%- include('test',{title: 'sub two function plus 1',menu: 'function_sub_2',equation: '5=(x+1)-(x+1)',actionList: [{item: '5',action: 'preformSubtract'}],result: '5=0'}); -%>
+</td>
+<td>
+<%- include('test',{title: 'sub function and num times function',menu: 'function_sub_3',equation: '5=2*(x+1)-(x+1)',actionList: [{item: '7',action: 'preformSubtract'}],result: '5=(2-1)*(x+1)'}); -%>
+</td>
+<td>
+<%- include('test',{title: 'sub function and num times function',menu: 'function_sub_4',equation: '5=(x+1)-2*(x+1)',actionList: [{item: '5',action: 'preformSubtract'}],result: '5=(1-2)*(x+1)'}); -%>
+</td>
+<td>
+<%- include('test',{title: 'sub two num times function',menu: 'function_sub_5',equation: '5=2*(x+1)-5*(x+1)',actionList: [{item: '7',action: 'preformSubtract'}],result: '5=(2-5)*(x+1)'}); -%>
+</td>
+</tr>
+<tr>
+<td>
+<%- include('test',{title: 'sub two function',menu: 'function_sub_2_1',equation: '5=(x)+(x)-(x)',actionList: [{item: '6',action: 'preformSubtract'}],result: '5=(x)+0'}); -%>
+</td>
+<td>
+<%- include('test',{title: 'sub two function',menu: 'function_sub_2_2',equation: '5=(x)-(x)-(x)',actionList: [{item: '6',action: 'preformSubtract'}],result: '5=(x)-2*(x)'}); -%>
+</td>
+</tr>
+</table>
+
+<center><h3>Subtract Divisions</h3></center> 
+<table>
+<tr>
+<td>
+<%- include('test',{title: 'add number fraction',menu: 'fraction_add_1',equation: '5=5/2-3/2',actionList: [{item: '4',action: 'preformSubtract'}],result: '5=(5-3)/2'}); -%>
+</td>
+<td>
+<%- include('test',{title: 'add number fraction',menu: 'fraction_add_2',equation: '5=(x+1)/3-(x+1)/3',actionList: [{item: '7',action: 'preformSubtract'}],result: '5=((x+1)-(x+1))/3'}); -%>
+</td>
+<td>
+<%- include('test',{title: 'add variable fraction',menu: 'fraction_add_3',equation: '5=(2*(x+1))/x-(x+1)/x',actionList: [{item: '10',action: 'preformSubtract'}],result: '5=((2*(x+1))-(x+1))/x'}); -%>
+</td>
+<td>
+<%- include('test',{title: 'add function fraction',menu: 'fraction_add_4',equation: '5=(2*(x+1))/(x+1)-(5*(x+1))/(x+1)',actionList: [{item: '13',action: 'preformSubtract'}],result: '5=((2*(x+1))-(5*(x+1)))/(x+1)'}); -%>
+</td>
+</tr>
+<tr>
+<td>
+<%- include('test',{title: 'add number fraction',menu: 'fraction_add_1_2',equation: '5=3/2-5/2-3/2',actionList: [{item: '8',action: 'preformSubtract'}],result: '5=3/2+(-1*5-3)/2'}); -%>
+</td>
+</tr>
+</table>
+
+</body>
+</html>

@@ -1,0 +1,61 @@
+<div id="SinglePlayer" style="margin-Top: -50% !important;" class="buttonList vertical-center menu">
+<%- include('./problemlist') %>
+<center>
+<button onClick="MenuBackClick()">Back</button>
+</center>
+</div>
+
+
+<!-- 
+***********************************
+edu
+***********************************
+-->
+<div id="Edu" style="margin-Top: -50% !important;" class="buttonList vertical-center menu">
+
+<%- include('./equation',{equationMetaDataVariable:'globalThis.equationData'}) %>
+
+<center style="display: none;">
+<input type="range" id="xpos" min="-500" max="500" defaultValue="0"></input>
+<input type="range" id="ypos" min="-500" max="500" defaultValue="0"></input>
+<input type="range" id="zpos" min="-500" max="500" defaultValue="0"></input>
+</br>
+<input type="range" id="xrot" min="-500" max="50" defaultValue="0"></input>
+<input type="range" id="yrot" min="-500" max="50" defaultValue="0"></input>
+<input type="range" id="zrot" min="-500" max="50" defaultValue="0"></input>
+</br>
+<input type="range" id="xneck" min="-500" max="500" defaultValue="0"></input>
+<input type="range" id="yneck" min="-500" max="500" defaultValue="0"></input>
+<input type="range" id="zneck" min="-500" max="500" defaultValue="0"></input>
+</center>
+
+<center>
+<button id="gameReset" onclick="EduResetClick()">Reset</button>
+<button id="gameBack" onclick="EduBackClick()">Back</button>
+</center>
+</div>
+
+<!-- 
+***********************************
+finish problem
+***********************************
+-->
+
+<div id="Finish" style="margin-Top: -50% !important;" class="buttonList vertical-center menu">
+	<div>
+		<center>
+			Problem:
+			<div id="FinishProblem">
+				<%- include('../partials/equationTop') %>
+			</div>
+			Solution:	
+			<div id="FinishSolution">
+				<%- include('../partials/equationTop') %>
+			</div>			
+
+			<h2>Good Work</h2>
+			<p>You solved the equation!</p>
+			<p><button onclick="FinishBackClick()">Back to Lessons</button></p>
+		</center>
+	</div>
+</div>

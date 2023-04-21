@@ -1,0 +1,144 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<style>
+.vertical-center {
+  margin: 0;
+  position: absolute;
+  display:block;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+.menu{
+	border:4px double #DEBB07;
+	background-color:#FCFADD;
+}
+</style>
+<link rel="stylesheet" href="css/interface.css">
+<link rel="stylesheet" href="css/particles.css">
+<script src="edu-interface.js"></script>
+<script>
+
+//sets scroll when page is reloaded. prevents screen items from moving off screen.
+if (history.scrollRestoration) {
+    history.scrollRestoration = 'manual';
+} else {
+    window.onbeforeunload = function () {
+        window.scrollTo(0, 0);
+    }
+}
+
+function BackClick(){
+	HandleNavigate("login");
+}
+
+function CreateClick(){
+	DisableButtons(true);
+	DisableInputs(true);
+	let message = document.getElementById("message");
+	let user = document.getElementById("user");
+	let password = document.getElementById("pwd");
+	let email = document.getElementById("email");
+
+	let postObj = { 
+    		username: user.value.trim(), 
+    		password: password.value.trim(), 
+    		email: email.value.trim() 
+	}
+	let post = JSON.stringify(postObj);
+
+	let url = "create"
+  	let xhttp = new XMLHttpRequest();
+	xhttp.onreadystatechange = function() {
+        	if (this.readyState == 4) {
+			if(this.status === 0 || (this.status >= 200 && this.status < 400)){
+				let responsevalue = JSON.parse (this.responseText);
+            			message.innerHTML = responsevalue.message;
+				if(responsevalue.message == "<font color='green'>User succesfully created</font>"){
+					document.cookie = "session="+responsevalue.session
+					HandleNavigate("login");
+				}else{
+					DisableButtons(false);
+					DisableInputs(false);
+				}
+			}
+       		}else if(this.readyState == 2){
+			if(this.status >= 400){
+				message.innerHTML = "connection error: "+this.status;
+				DisableButtons(false);
+				DisableInputs(false);
+			}
+		}
+    	};
+  	xhttp.open('POST', url, true)
+	xhttp.setRequestHeader('Content-type', 'application/json; charset=UTF-8')
+	xhttp.send(post);
+}
+</script>
+</head>
+<body class="ParticleAnimation" background="textures/nebula.png" style="overflow: hidden;">
+
+<!-- 
+***********************************
+Login
+***********************************
+-->
+<div id="Menu"  style="margin-Top: -50% !important;" class="buttonList vertical-center menu">
+<center>Create Account</center>
+<center>
+<table>
+
+<tr><td><center>
+User Name
+</center></td></tr>
+
+<tr><td><center>
+<input type="text" id="user" name="user">
+</center></td></tr>
+
+<tr><td><center>
+Password
+</center></td></tr>
+
+<tr><td><center>
+<input type="password" id="pwd" name="pwd">
+</center></td></tr>
+
+<tr><td><center>
+Email
+</center></td></tr>
+
+<tr><td><center>
+<input type="text" id="email" name="email">
+</center></td></tr>
+
+<tr><td><center>
+<button id="create" onclick="CreateClick()" >Create</button>
+</center></td></tr>
+
+<tr><td><center>
+<p id="message"></p>
+</center></td></tr>
+
+<tr><td><center>
+<button onclick="BackClick()">back</button>
+</center></td></tr>
+</table>
+</center>
+</div>
+
+<script>
+globalThis.currentActiveMenu = 'Menu';
+
+function animate() {
+	requestAnimationFrame( animate );
+
+	animateMenu();
+};
+animate();
+</script>
+</body>
+</html>

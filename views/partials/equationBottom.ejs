@@ -1,0 +1,57 @@
+<div align="center">
+rules:
+<br/>
+<button disabled class="rulebutton startdisabled"  id="add" onclick="MathemagicianPerformList.preformAdd(<%- equationMetaDataVariable %>)" >Add</button>
+<button disabled class="rulebutton startdisabled"  id="subtract" onclick="MathemagicianPerformList.preformSubtract(<%- equationMetaDataVariable %>)" >Subtract</button>
+<button disabled class="rulebutton startdisabled"  id="multiply" onclick="MathemagicianPerformList.preformMultiply(<%- equationMetaDataVariable %>)" >Multiply</button>
+<button disabled class="rulebutton startdisabled"  id="divide" onclick="MathemagicianPerformList.preformDivide(<%- equationMetaDataVariable %>)" >Divide</button>
+<button disabled class="rulebutton startdisabled"  id="exponent" onclick="" >Exponent</button>
+<br/>
+<button id="doubleNegative" class="rulebutton startdisabled"  onclick="MathemagicianPerformList.preformDoubleNegative(<%- equationMetaDataVariable %>)" disabled>Double Negative</button>
+<button id="MultNegative" class="rulebutton startdisabled"  onclick="MathemagicianPerformList.performMultiNegative(<%- equationMetaDataVariable %>)" disabled>STM Negative</button>
+<button id="commutativeRule" class="rulebutton startdisabled"  onclick="MathemagicianPerformList.preformCommutativeRule(<%- equationMetaDataVariable %>)" disabled>Commutative Rule</button>
+<br/>
+<button id="removeBrackets" class="rulebutton startdisabled"  onclick="MathemagicianPerformList.preformRemoveBrackets(<%- equationMetaDataVariable %>)" disabled>Remove Brackets</button>
+<button id="distributiveRule" class="rulebutton startdisabled"  onclick="" disabled>Add Brackets</button>
+<button id="distributiveRule" class="rulebutton startdisabled"  onclick="" disabled>Subsume with Brackets</button>
+<button id="distributiveRule" class="rulebutton startdisabled"  onclick="" disabled>Exhume from Brackets</button>
+<br/>
+<button id="distributiveRule" class="rulebutton startdisabled"  onclick="MathemagicianPerformList.preformDistributiveRule(<%- equationMetaDataVariable %>)" disabled>Distributive Rule</button>
+<button id="distributiveRule" class="rulebutton startdisabled"  onclick="" disabled>Fraction Addition Rule</button>
+<br/>
+<button id="addSplit" class="rulebutton startdisabled"  onclick="" disabled>Additive Split</button>
+<button id="multSplit" class="rulebutton startdisabled"  onclick="" disabled>Multiplicitive Split</button>
+<button id="expSplit" class="rulebutton startdisabled" onclick="" disabled>Exponent Split</button>
+</div>
+
+<center>
+<table>
+<tr>
+<td>
+<input id="numberCreatorText" onchange="numberValueChanged(<%- equationMetaDataVariable %>)" type="number" value="1" style="width: 40px;"></input> 
+</td>
+<td>
+<input id="variableCreatorButton" onchange="numberValueChanged(<%- equationMetaDataVariable %>)" type="checkbox" value="X">X
+</td>
+<td>
+<button id="gameCreateAdder" onclick="MathemagicianPerformList.createAdderBoth(<%- equationMetaDataVariable %>)" >Create Adder</button>
+</td>
+<td>
+<button id="gameCreateSubtractor" onclick="MathemagicianPerformList.createSubtractorLeftBoth(<%- equationMetaDataVariable %>)" >Create Subtractor Left</button>
+<br>
+<button id="gameCreateSubtractor" onclick="MathemagicianPerformList.createSubtractorRightBoth(<%- equationMetaDataVariable %>)" >Create Subtractor Right</button>
+</td>
+<td>
+<button id="gameCreateMultiplier" onclick="MathemagicianPerformList.createNumeratorBoth(<%- equationMetaDataVariable %>)" >Create Multiplier</button>
+</td>
+<td>
+<button id="gameCreateDivisor" onclick="MathemagicianPerformList.createDenominatorBoth(<%- equationMetaDataVariable %>)" >Create Divisor</button>
+<br>
+<button id="gameCreateDivisor" onclick="MathemagicianPerformList.createReciprocalBoth(<%- equationMetaDataVariable %>)" >Create Reciprocal</button>
+</td>
+<td>
+<button id="gameCreateExponent" onclick="MathemagicianPerformList.createExponentBoth(<%- equationMetaDataVariable %>)" >Create Exponent</button>
+</td>
+</tr>
+</table>
+</center>

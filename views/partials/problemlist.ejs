@@ -1,0 +1,310 @@
+<div style="max-height:500px;overflow-Y:scroll;border: 1px solid black;" class="scrollable">
+<table rules="all" style="overflow:auto;border: 1px solid black;">
+
+
+
+
+<tr>
+<td>
+Addition/Subtraction
+</td>
+<td>
+<!--explain the basics-->
+<%- include('problem',{menu: 'Edu',lesson: 'A1',title: 'Lesson 1: Addition',equation: 'x=2+3'}); -%>
+<!--teach double negative rule-->
+<%- include('problem',{menu: 'Edu',lesson: 'A2',title: 'Lesson 2: Subtraction',equation: 'x=-3+2--1-3'}); -%>
+<!--introduce opposite operations-->
+<%- include('problem',{menu: 'Edu',lesson: 'A3',title: 'Lesson 3: Jumping the Gap',equation: 'x-21=41+82'}); -%>
+<!--introduce brackets-->
+<%- include('problem',{menu: 'Edu',lesson: 'A4',title: 'Lesson 4: Brackets',equation: '16=(x-2)+3'}); -%>
+<!-- large question as finisher -->
+<%- include('problem',{menu: 'Edu',lesson: 'A5',title: 'Lesson 5: Bringing it all Togeather',equation: '6+(5-x)+8=2+3'}); -%>
+</td>
+<td>
+<%- include('challenge',{menu: 'Edu',challenge: 'AddSub',randomizer: 'generateAdditiveLinearEquationObject'}); -%>
+</td>
+</tr>
+
+<tr>
+<td>
+Extras
+</td>
+<td>
+<!--explain the basics-->
+<%- include('problem',{menu: 'Edu',lesson: 'B1',title: 'Lesson 1: The Basics',equation: 'x=2+3'}); -%>
+<!--teach double negative rule-->
+<%- include('problem',{menu: 'Edu',lesson: 'B2',title: 'Lesson 2: Double Negative',equation: 'x=-3+2--1-3'}); -%>
+<!--introduce communitive rule-->
+<%- include('problem',{menu: 'Edu',lesson: 'B3',title: 'Lesson 3: Communitive Rule',equation: '12-6+2=2+6-x+2'}); -%>
+<!--introduce brackets-->
+<%- include('problem',{menu: 'Edu',lesson: 'B4',title: 'Lesson 4: Brackets',equation: '16=(x-2)+3'}); -%>
+<!-- large question as finisher -->
+<%- include('problem',{menu: 'Edu',lesson: 'B5',title: 'Lesson 5: Bringing it all Togeather',equation: '6+(5+x)+8=2+(3-8)'}); -%>
+</td>
+<td>
+<%- include('challenge',{menu: 'Edu',challenge: 'Extra',randomizer: ''}); -%>
+</td>
+</tr>
+
+<tr>
+<td>
+Multiply/Divide
+</td>
+<td>
+<!-- -->
+<%- include('problem',{menu: 'Edu',lesson: 'C1',title: 'Lesson 1: The Basics',equation: 'x=2*3'}); -%>
+<!-- -->
+<%- include('problem',{menu: 'Edu',lesson: 'C2',title: 'Lesson 2: Division',equation: 'x=2/3'}); -%>
+<!-- -->
+<%- include('problem',{menu: 'Edu',lesson: 'C3',title: 'Lesson 3: The Chain',equation: 'x=2*x=2*4*(2*3)*4'}); -%>
+<!-- -->
+<!-- //todo -->
+<%- include('problem',{menu: 'Edu',lesson: 'C4',title: 'Lesson 4: Above and Below',equation: 'x=2*3'}); -%>
+<!-- large question as finisher -->
+<!-- //todo -->
+<%- include('problem',{menu: 'Edu',lesson: 'C5',title: 'Lesson 5: Bringing it all Togeather',equation: '6+(5-x)+8=2+3'}); -%>
+</td>
+<td>
+<%- include('challenge',{menu: 'Edu',challenge: 'MultDiv',randomizer: ''}); -%>
+</td>
+</tr>
+
+<tr>
+<td>
+Both Togeather
+</td>
+<td>
+<!-- -->
+<button  onClick="QuestionButtonClick('Edu','x=2*3')">Lesson 1: Terms</button>
+<!-- -->
+<button  onClick="QuestionButtonClick('Edu','x=2*3')">Lesson 2: Like Terms</button>
+<!-- -->
+<button  onClick="QuestionButtonClick('Edu','x=2*3')">Lesson 3: Distribution</button>
+<!-- -->
+<button  onClick="QuestionButtonClick('Edu','x=2*3')">Lesson 4: Factoring</button>
+<!-- large question as finisher -->
+<button onClick="QuestionClick('Edu','6+(5-x)+8=2+3','A6')">Lesson 5: Bringing it all Togeather</button>
+</td>
+<td>
+10 questions remaining
+<br/>
+<center><button>Challange</button></center>
+</td>
+</tr>
+
+<tr>
+<td>
+Fractions
+</td>
+<td>
+<!-- -->
+<button  onClick="QuestionButtonClick('Edu','x=2*3')">Lesson 1: Fractions</button>
+<!-- -->
+<button  onClick="QuestionButtonClick('Edu','x=2*3')">Lesson 2: Multiply Fractions</button>
+<!-- -->
+<button  onClick="QuestionButtonClick('Edu','x=2*3')">Lesson 3: Add Fractions</button>
+<!-- -->
+<button  onClick="QuestionButtonClick('Edu','x=2*3')">Lesson 4: Canceling Fractions</button>
+<!-- large question as finisher -->
+<button onClick="QuestionClick('Edu','6+(5-x)+8=2+3','A6')">Lesson 5: Bringing it all Togeather</button>
+</td>
+<td>
+10 questions remaining
+<br/>
+<center><button>Challange</button></center>
+</td>
+</tr>
+
+<tr>
+<td>
+Distribution Law
+</td>
+<td>
+<!-- -->
+<button  onClick="QuestionButtonClick('Edu','x=2*3')">Lesson 1: Basic Distribution</button>
+<!-- -->
+<button  onClick="QuestionButtonClick('Edu','x=2*3')">Lesson 2: Advanced Distribution</button>
+<!-- -->
+<button  onClick="QuestionButtonClick('Edu','x=2*3')">Lesson 3: Distribution with Fractions</button>
+<!-- -->
+<button  onClick="QuestionButtonClick('Edu','x=2*3')">Lesson 4: Distribution Tools</button>
+<!-- large question as finisher -->
+<button onClick="QuestionClick('Edu','6+(5-x)+8=2+3','A6')">Lesson 5: Bringing it all Togeather</button>
+</td>
+<td>
+10 questions remaining
+<br/>
+<center><button>Challange</button></center>
+</td>
+</tr>
+
+<tr>
+<td>
+Exponents
+</td>
+<td>
+<!-- -->
+<button onClick="QuestionButtonClick('Edu','x=2*3')">Lesson 1: Basic Exponents</button>
+<!-- -->
+<button onClick="QuestionButtonClick('Edu','x=2*3')">Lesson 2: Adding Exponents</button>
+<button onClick="QuestionButtonClick('Edu','x=2*3')">Lesson 3: Multiply Exponents</button>
+<button onClick="QuestionButtonClick('Edu','x=2*3')">Lesson 4: Divide Exponents</button>
+<button onClick="QuestionButtonClick('Edu','x=2*3')">Lesson 5: Exponents of Exponents</button>
+<!-- large question as finisher -->
+<button onClick="QuestionClick('Edu','6+(5-x)+8=2+3','A6')">Lesson 6: Bringing it all Togeather</button>
+</td>
+<td>
+10 questions remaining
+<br/>
+<center><button>Challange</button></center>
+</td>
+</tr>
+
+<tr>
+<td>
+Roots
+</td>
+<td>
+<!-- -->
+<button onClick="QuestionButtonClick('Edu','x=2*3')">Lesson 1: Square Root</button>
+<!-- -->
+<button onClick="QuestionButtonClick('Edu','x=2*3')">Lesson 2: Multiple Roots</button>
+<!-- -->
+<button onClick="QuestionButtonClick('Edu','x=2*3')">Lesson 3: Fractional Exponents</button>
+<!-- -->
+<button onClick="QuestionButtonClick('Edu','x=2*3')">Lesson 4: Canceling Exponents</button>
+<!-- large question as finisher -->
+<button onClick="QuestionClick('Edu','6+(5-x)+8=2+3','A6')">Lesson 5: Bringing it all Togeather</button>
+</td>
+<td>
+10 questions remaining
+<br/>
+<center><button>Challange</button></center>
+</td>
+</tr>
+
+<tr>
+<td>
+Polynomials
+</td>
+<td>
+<button onClick="QuestionButtonClick('Edu','x=2*3')">Lesson 1: Monomials</button>
+<button onClick="QuestionButtonClick('Edu','x=2*3')">Lesson 2: Finding Zeroes</button>
+<button onClick="QuestionButtonClick('Edu','x=2*3')">Lesson 3: Quadratics</button>
+<button onClick="QuestionButtonClick('Edu','x=2*3')">Lesson 4: Polynomial Division</button>
+<!-- large question as finisher -->
+<button onClick="QuestionClick('Edu','6+(5-x)+8=2+3','A6')">Lesson 5: Bringing it all Togeather</button>
+</td>
+<td>
+10 questions remaining
+<br/>
+<center><button>Challange</button></center>
+</td>
+</tr>
+
+<tr>
+<td>
+Exponential Polynomials
+</td>
+<td>
+<button onClick="QuestionButtonClick('Edu','x=2*3')">Question 1</button>
+<button>Question 2</button>
+<button>Question 3</button>
+<!-- large question as finisher -->
+<button onClick="QuestionClick('Edu','6+(5-x)+8=2+3','A6')">Lesson 5: Bringing it all Togeather</button>
+</td>
+<td>
+10 questions remaining
+<br/>
+<center><button>Challange</button></center>
+</td>
+</tr>
+
+
+<tr >
+<td>
+test
+</td>
+<td>
+<button onClick="QuestionClick('Edu','x=4+0+2','t1')">1</button>
+<button onClick="QuestionClick('Edu','x=4-0+2','t2')">2</button>
+<button onClick="QuestionClick('Edu','x=0+2','t2b')">2b</button>
+<button onClick="QuestionClick('Edu','x=4+2+3','t3')">3</button>
+<button onClick="QuestionClick('Edu','x=4-2+3','t4')">4</button>
+<button onClick="QuestionClick('Edu','x=4-4+3','t4b')">4b</button>
+<button onClick="QuestionClick('Edu','x+x-x+x=4','t5')">5</button>
+<button onClick="QuestionClick('Edu','x+x=4-4+3','t6')">6</button>
+<button onClick="QuestionClick('Edu','2*x+x=4-4+3','t6')">7</button>
+<button onClick="QuestionClick('Edu','x+2*x=4-4+3','t6')">8</button>
+<button onClick="QuestionClick('Edu','2*x+3*x=4-4+3','t6')">9</button>
+<button onClick="QuestionClick('Edu','2*x+3*x=4-4+3','t6')">10</button>
+<button onClick="QuestionClick('Edu','x*3-2*x+3*x+x*3=4-4+3','t6')">11</button>
+<button onClick="QuestionClick('Edu','2*(x+2)+3*(x+2)=4-4+3','t6')">12</button>
+<button onClick="QuestionClick('Edu','(x+2)-(x+2)+(x+2)=4-4+3','t6')">13</button>
+<button onClick="QuestionClick('Edu','2*2*(x+2)-3*3*(x+2)+2*6*(x+2)=4-4+3','t6')">14</button>
+<button onClick="QuestionClick('Edu','2*2*(x+2)+(x+2)+2*6*(x+2)=4-4+3','t6')">15</button>
+<button onClick="QuestionClick('Edu','2*2*(x+2)-(x+2)+2*6*(x+2)=4-4+3','t6')">16</button>
+</td>
+</tr>
+
+<tr>
+<td>
+test
+</td>
+<td>
+<button onClick="QuestionClick('Edu','x=1-1*1','t1')">1</button>
+<button onClick="QuestionClick('Edu','x=1-2*x','t2')">2</button>
+<button onClick="QuestionClick('Edu','x=1-(2*x)','t3')">3</button>
+</td>
+</tr>
+
+
+<tr>
+<td>
+test
+</td>
+<td>
+<button onClick="QuestionClick('Edu','x=1*1','t1')">1*1</button>
+
+<button onClick="QuestionClick('Edu','x=1*3','t2')">1*n</button>
+<button onClick="QuestionClick('Edu','x=3*2','t3')">n*n</button>
+
+<button onClick="QuestionClick('Edu','1*x=3','t4')">1*x</button>
+<button onClick="QuestionClick('Edu','3*x=5','t5')">n*x</button>
+<button onClick="QuestionClick('Edu','x*x=2','t6')">x*x</button>
+
+<button onClick="QuestionClick('Edu','x^2*1=2','t7')">1*x^n</button>
+<button onClick="QuestionClick('Edu','x^3*3=2','t8')">n*x^n</button>
+<button onClick="QuestionClick('Edu','x^3*x=2','t9')">x*x^n</button>
+<button onClick="QuestionClick('Edu','x^3*x^2=2','t10')">x^n*x^n</button>
+
+<button onClick="QuestionClick('Edu','1*(2*x+3)=2','t11')">1*e</button>
+<button onClick="QuestionClick('Edu','4*(2*x+3)=2','t12a')">a:n*e</button>
+<button onClick="QuestionClick('Edu','4*(4)=x','t12b')">b:n*e</button>
+<button onClick="QuestionClick('Edu','x*(2*x+3)=2','t13a')">a:x*e</button>
+<button onClick="QuestionClick('Edu','x*(x)=2','t13b')">b:x*e</button>
+<button onClick="QuestionClick('Edu','x^3*(2*x+3)=2','t14a')">a:x^n*e</button>
+<button onClick="QuestionClick('Edu','x^3*(x^3)=2','t14b')">b:x^n*e</button>
+<button onClick="QuestionClick('Edu','(2*x+3)*(2*x+3)=2','t15a')">a:e*e</button>
+<button onClick="QuestionClick('Edu','(2*x+4)*(2*x+3)=2','t15b')">b:e*e</button>
+
+<button onClick="QuestionClick('Edu','1*(2*x+3)^2=2','t16')">1*e^n</button>
+<button onClick="QuestionClick('Edu','3*(2*x+3)^2=2','t17a')">a:n*e^n</button>
+<button onClick="QuestionClick('Edu','3*(3)^2=x','t17b')">b:n*e^n</button>
+<button onClick="QuestionClick('Edu','x*(2*x+3)^2=2','t18a')">a:x*e^n</button>
+<button onClick="QuestionClick('Edu','x*(x)^2=2','t18b')">b:x*e^n</button>
+<button onClick="QuestionClick('Edu','x^3*(2*x+3)^2=2','t19a')">a:x^n*e^n</button>
+<button onClick="QuestionClick('Edu','x^3*(x^3)^2=2','t19b')">b:x^n*e^n</button>
+<button onClick="QuestionClick('Edu','(2*x+3)*(2*x+3)^2=2','t20a')">a:e*e^n</button>
+<button onClick="QuestionClick('Edu','(2*x+4)*(2*x+3)^2=2','t20b')">b:e*e^n</button>
+<button onClick="QuestionClick('Edu','(2*x+3)^2*(2*x+3)^2=2','t21a')">a:e^n*e^n</button>
+<button onClick="QuestionClick('Edu','(2*x+4)^2*(2*x+3)^2=2','t21b')">b:e^n*e^n</button>
+
+<button onClick="QuestionClick('Edu','(x+1)*(x+1)*(x+2)^2*(x+1)^3*(x+1)^2=3','t5')">test 5</button>
+<button onClick="QuestionClick('Edu','(x+2)*(x+1)*(x+1)*(x+1)^3*(x+2)^2=3','t6')">test 6</button>
+</td>
+</tr>
+
+</table>
+</div>
+

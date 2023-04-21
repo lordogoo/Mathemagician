@@ -1,0 +1,152 @@
+<head>
+<script src="jquery-3.3.1.js"></script>
+<script src="jquery.jslatex.js"></script>
+</head>
+<body onload="myFunction();">
+
+<table style="width: 100%">
+<tr>
+<td style="width: 20%">
+<p id="Column1" class=""></p>
+</td>
+<td style="width: 20%">
+<p id="Column2" class=""></p>
+</td>
+<td style="width: 20%">
+<p id="Column3" class=""></p>
+</td>
+<td style="width: 20%">
+<p id="Column4" class=""></p>
+</td>
+<td style="width: 20%">
+<p id="Column5" class=""></p>
+</td>
+</tr>
+</table>
+<script>
+function myFunction() {
+    var totalnum = 20;
+    var element = document.getElementById("Column1");
+	
+	
+	
+	for(var i = 0; i < totalnum ; i++){
+		createSubtraction(element);
+		var br = document.createElement('br');
+		element.appendChild(br);
+	}
+	
+	element = document.getElementById("Column2");
+	
+	for(var i = 0; i < totalnum ; i++){
+		createMixedRadical(element);
+		var br = document.createElement('br');
+		element.appendChild(br);
+	}
+	
+	element = document.getElementById("Column3");
+	
+	for(var i = 0; i < totalnum ; i++){
+		createPureRadical(element);
+		var br = document.createElement('br');
+		element.appendChild(br);
+	}
+	
+	element = document.getElementById("Column4");
+	
+	for(var i = 0; i < totalnum ; i++){
+		createExponent(element);
+		var br = document.createElement('br');
+		element.appendChild(br);
+	}
+	
+	element = document.getElementById("Column5");
+	
+	for(var i = 0; i < totalnum/2 ; i++){
+		createExponentfraction(element);
+		var br = document.createElement('br');
+		element.appendChild(br);
+	}
+	
+	$(".latex").latex();
+}
+
+function createMixedRadical(element){
+	var div = document.createElement('div');
+    div.className = "latex";
+	var equation = element.appendChild(div);
+	var index = Math.floor(Math.random() * 3)+2;
+	var num1 = Math.floor(Math.random() * 9)+2;
+	var num2 = Math.floor(Math.random() * 9)+2;
+	var eq;
+	if(index == 2){
+		eq = document.createTextNode(num1+'\\sqrt{'+num2+'}$=$');
+	}else{
+		eq = document.createTextNode(num1+'\\sqrt['+index+']{'+num2+'}$=$');
+	}
+	equation.appendChild(eq);
+}
+
+function createPureRadical(element){
+	var div = document.createElement('div');
+    div.className = "latex";
+	var equation = element.appendChild(div);
+	var primes = [2,3,5,7,11,13]
+	var index = Math.floor(Math.random() * 3)+2;
+	var num1 = primes[Math.floor(Math.random() * 5)];
+	var num2 = primes[Math.floor(Math.random() * 3)];
+	var total = num1;
+	for(var i = 0; i < index; i++){
+		total = num2 * total;
+	}
+	var eq;
+	if(index == 2){
+		eq = document.createTextNode('\\sqrt{'+total+'}$=$');
+	}else{
+		eq = document.createTextNode('\\sqrt['+index+']{'+total+'}$=$');
+	}
+	equation.appendChild(eq);
+}
+
+function createSubtraction(element){
+	var div = document.createElement('div');
+	div.className = "latex";
+	var equation = element.appendChild(div);
+	var v1 = Math.floor(Math.random() * 100)-50; 
+	var v2 = Math.floor(Math.random() * 100)-50; 
+	var signnum = Math.floor(Math.random()*100)-50; 
+	var sign;
+	if (signnum > 0){
+		sign = '+';
+	}else{
+		sign = '-';
+	}
+	var eq = document.createTextNode(v1+sign+v2+"=");
+	equation.appendChild(eq);
+}
+
+function createExponent(element){
+	var div = document.createElement('div');
+	div.className = "latex";
+	var equation = element.appendChild(div);
+	var num1 = Math.floor(Math.random() * 100)-50; 
+	var num2 = Math.floor(Math.random() * 100)-50; 
+	var signnum = Math.floor(Math.random()*100)-50; 
+	var eq = document.createTextNode('x^{'+num1+'}x^{'+num2+'}$=$');
+	equation.appendChild(eq);
+}
+
+function createExponentfraction(element){
+	var div = document.createElement('div');
+	div.className = "latex";
+	var equation = element.appendChild(div);
+	var num1 = Math.floor(Math.random() * 100)-50; 
+	var num2 = Math.floor(Math.random() * 100)-50; 
+	var signnum = Math.floor(Math.random()*100)-50; 
+	var eq = document.createTextNode('\\frac{x^{'+num1+'}}{x^{'+num2+'}}$=$');
+	equation.appendChild(eq);
+}
+
+</script>
+
+</body>

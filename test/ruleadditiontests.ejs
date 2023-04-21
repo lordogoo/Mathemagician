@@ -1,0 +1,104 @@
+<html>
+<head>
+<script src="../edu-test.js"></script>
+<script src="../edu-helper.js"></script>
+<script src="../edu-interface.js"></script>
+<script src="../edu.js"></script>
+<style>
+body>table>tbody>tr>td{
+	vertical-align: top;
+	border-style: solid;
+}
+</style>
+</head>
+<body>
+
+<center><h1>Perform Addition</h1></center>
+<center>
+This is the list of tests for the perform addition function.
+<br>
+<a href="../test">Back</a>
+</center>
+
+<center><h3>add zero</h3></center> 
+<table>
+<tr>
+<td>
+<%- include('test',{title: 'add zero right',menu: 'zero_add_1',equation: 'x=2+0',actionList: [{item: '3',action: 'preformAdd'}],result: 'x=2'}); -%>
+</td>
+<td>
+<%- include('test',{title: 'add zero left',menu: 'zero_add_2',equation: 'x=0+4',actionList: [{item: '3',action: 'preformAdd'}],result: 'x=4'}); -%>
+</td>
+<td>
+<%- include('test',{title: 'zero far left',menu: 'zero_add_3',equation: 'x=0+4+1',actionList: [{item: '3',action: 'preformAdd'}],result: 'x=4+1'}); -%>
+</td>
+<td>
+<%- include('test',{title: 'zero center left',menu: 'zero_add_4',equation: 'x=1+0+4',actionList: [{item: '3',action: 'preformAdd'}],result: 'x=1+4'}); -%>
+</td>
+<td>
+<%- include('test',{title: 'zero center right',menu: 'zero_add_5',equation: 'x=1+0+4',actionList: [{item: '5',action: 'preformAdd'}],result: 'x=1+4'}); -%>
+</td>
+<td>
+<%- include('test',{title: 'zero far right',menu: 'zero_add_6',equation: 'x=1+4+0',actionList: [{item: '5',action: 'preformAdd'}],result: 'x=1+4'}); -%>
+</td>
+</tr>
+<tr>
+<td>
+<%- include('test',{title: 'zero variable right',menu: 'zero_add_7',equation: 'x=x+0',actionList: [{item: '3',action: 'preformAdd'}],result: 'x=x'}); -%>
+</td>
+<td>
+<%- include('test',{title: 'zero variable left',menu: 'zero_add_8',equation: 'x=0+x',actionList: [{item: '3',action: 'preformAdd'}],result: 'x=x'}); -%>
+</td>
+</tr>
+</table>
+
+<center><h3>add numbers</h3></center> 
+<table>
+<tr>
+<td>
+<%- include('test',{title: 'add two numbers',menu: 'simple_add_1',equation: 'x=2+3',actionList: [{item: '3',action: 'preformAdd'}],result: 'x=5'}); -%>
+</td>
+<td>
+<%- include('test',{title: 'add number middle',menu: 'simple_add_2',equation: 'x=2+7+6+4',actionList: [{item: '5',action: 'preformAdd'}],result: 'x=2+13+4'}); -%>
+</td>
+</tr>
+</table>
+
+<center><h3>add variables</h3></center> 
+<table>
+<tr>
+<td>
+<%- include('test',{title: 'add two x',menu: 'variable_add_1',equation: '5=x+x',actionList: [{item: '3',action: 'preformAdd'}],result: '5=2*x'}); -%>
+</td>
+<td>
+<%- include('test',{title: 'add x and num times x',menu: 'variable_add_2',equation: '5=2*x+x',actionList: [{item: '5',action: 'preformAdd'}],result: '5=(2+1)*x'}); -%>
+</td>
+<td>
+<%- include('test',{title: 'add two num times x',menu: 'variable_add_3',equation: '5=2*x+3*x',actionList: [{item: '5',action: 'preformAdd'}],result: '5=(2+3)*x'}); -%>
+</td>
+</tr>
+</table>
+
+<center><h3>add functions</h3></center> 
+<table>
+<tr>
+<td>
+<%- include('test',{title: 'add two function',menu: 'function_add_1',equation: '5=(x)+(x)',actionList: [{item: '4',action: 'preformAdd'}],result: '5=2*(x)'}); -%>
+</td>
+<td>
+<%- include('test',{title: 'add two function plus 1',menu: 'function_add_2',equation: '5=(x+1)+(x+1)',actionList: [{item: '6',action: 'preformAdd'}],result: '5=2*(x+1)'}); -%>
+</td>
+<td>
+<%- include('test',{title: 'add function and num times function',menu: 'function_add_3',equation: '5=2*(x+1)+(x+1)',actionList: [{item: '8',action: 'preformAdd'}],result: '5=(2+1)*(x+1)'}); -%>
+</td>
+<td>
+<%- include('test',{title: 'add two num times function',menu: 'function_add_4',equation: '5=2*(x+1)+5*(x+1)',actionList: [{item: '8',action: 'preformAdd'}],result: '5=(2+5)*(x+1)'}); -%>
+</td>
+</tr>
+</table>
+
+todo: add fractions
+
+
+</body>
+</html>

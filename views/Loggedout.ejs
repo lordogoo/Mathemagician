@@ -1,0 +1,83 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<style>
+.vertical-center {
+  margin: 0;
+  position: absolute;
+  display:block;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+.menu{
+	border:4px double #DEBB07;
+	background-color:#FCFADD;
+}
+</style>
+<link rel="stylesheet" href="css/interface.css">
+<link rel="stylesheet" href="css/particles.css">
+<script src="edu-interface.js"></script>
+<script>
+//sets scroll when page is reloaded. prevents screen items from moving off screen.
+if (history.scrollRestoration) {
+    history.scrollRestoration = 'manual';
+} else {
+    window.onbeforeunload = function () {
+        window.scrollTo(0, 0);
+    }
+}
+
+function BackClick(){
+	HandleNavigate("login");
+}
+</script>
+</head>
+<body class="ParticleAnimation" background="textures/nebula.png" style="overflow: hidden;">
+
+<div class="animation-wrapper">
+	<div class="particle particle-1"></div>
+	<div class="particle particle-2"></div>
+ 	<div class="particle particle-3"></div>
+ 	<div class="particle particle-4"></div>
+</div>
+
+<!-- 
+***********************************
+Login
+***********************************
+-->
+<div id="Menu"  style="margin-Top: -50% !important;" class="buttonList vertical-center menu">
+<center>
+<table>
+
+
+<tr><td><center>
+You are currently logged out and thus cannot view this page. 
+Please log in before trying to head to this page.
+</center></td></tr>
+
+<tr><td><center>
+</center></td></tr>
+
+<tr><td><center>
+<button onclick="BackClick()">Back</button>
+</center></td></tr>
+</table>
+</center>
+</div>
+
+<script>
+globalThis.currentActiveMenu = 'Menu';
+
+function animate() {
+	requestAnimationFrame( animate );
+
+	animateMenu();
+};
+animate();
+</script>
+</body>
+</html>

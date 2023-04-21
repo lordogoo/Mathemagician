@@ -1,0 +1,989 @@
+<!DOCTYPE html>
+<head>
+<!-- <script src="jquery-3.3.1.js"></script> -->
+<!-- <SCRIPT SRC="katex/katex.js"></SCRIPT> -->
+<!-- <script src="katex/contrib/auto-render.js"></script>-->
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.css" integrity="sha384-TEMocfGvRuD1rIAacqrknm5BQZ7W7uWitoih+jMNFXQIbNl16bO8OZmylH/Vi/Ei" crossorigin="anonymous">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.js" integrity="sha384-jmxIlussZWB7qCuB+PgKG1uLjjxbVVIayPJwi6cG6Zb4YKq0JIw+OMnkkEC7kYCq" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/contrib/auto-render.min.js" integrity="sha384-IiI65aU9ZYub2MY9zhtKd1H2ps7xxf+eb2YFG9lX6uRqpXCvBTOidPRCXCrQ++Uc" crossorigin="anonymous"></script>
+</head>
+<body onload="myFunction();">
+<style>
+    .circle {
+      width: 50px;
+      height: 50px;
+      -webkit-border-radius: 25px;
+      -moz-border-radius: 25px;
+      border-radius: 25px;
+      background: red;
+    }
+</style>
+
+
+<table style="width: 100%">
+<tr>
+<td style="width: 25%">
+<p id="Column1" class=""></p>
+</td>
+<td style="width: 25%">
+<p id="Column2" class=""></p>
+</td>
+<td style="width: 25%">
+<p id="Column3" class=""></p>
+</td>
+<td style="width: 25%">
+<p id="Column4" class=""></p>
+</td>
+</tr>
+</table>
+<script>
+//https://www.brsd.ab.ca/school/tofield/northstar/math10-3/Pages/default.aspx
+var index = 1;
+function myFunction() {
+    var totalnum = 20;
+    var functions = [];
+	functions.push(createareaproblem);
+	//functions.push(createmesurement);
+	functions.push(creatTrianglePithagorean);
+	functions.push(creatTriangle);
+	functions.push(createinverseareaproblem);
+	functions.push(createareacircleproblem);
+	//functions.push(createinverseareacircleproblem);
+
+    for(var columnnum = 1; columnnum  < functions.length; columnnum++){
+	var element = document.getElementById("Column"+columnnum);	
+	for(var i = 0; i < totalnum ; i++){
+		var table = document.createElement('table');
+		var tr = document.createElement('tr');
+		table.appendChild(tr);
+		var tda = document.createElement('td');
+		tr.appendChild(tda);
+		var tdb = document.createElement('td');
+		tr.appendChild(tdb);
+		var tdc = document.createElement('td');
+		tr.appendChild(tdc);
+		var tdd = document.createElement('td');
+		tr.appendChild(tdd);
+		var num = document.createTextNode(index+')');
+		tda.appendChild(num);
+		var answerbox = document.createElement('p');
+		var result = functions[columnnum](tdb,answerbox);
+		//var answer = document.createTextNode(result);
+		//answerbox.appendChild(answer);
+		answerbox.hidden = true;
+		answerbox.id = "answer"+index;
+		tdc.appendChild(answerbox);
+		var showbutton = document.createElement('button');
+		showbutton.setAttribute("onclick","document.getElementById('answer"+index+"').hidden = false;this.hidden = true");
+		var buttontext = document.createTextNode('show');
+		showbutton.appendChild(buttontext);
+		tdd.appendChild(showbutton);
+		element.appendChild(table);
+		var br = document.createElement('br');
+		element.appendChild(br);
+		index ++;
+	}
+    }
+
+      renderMathInElement(
+          document.body
+      );
+}
+
+
+function createtemperature(element,element2){
+	var div = document.createElement('div');
+    	div.className = "latex";
+	var equation = element.appendChild(div);
+	var f = Math.floor(Math.random() * 200)-100;
+	var c = Math.floor(Math.random() * 200)-100;
+	var sign = Math.floor(Math.random() * 100)-50;
+	var text;
+	var result; 
+	if (sign > 0){
+		sign = f;
+		text = 'Convert ' + f + ' fahrenheit to Celsius'
+		result = (f-32)/1.8;
+	}else{
+		sign = c;
+		text = 'Convert ' + c + ' Celsius to fahrenheit'
+		result = (c*1.8)+32;
+	}
+	var eq = document.createTextNode(text);
+	equation.appendChild(eq);	
+
+	var div2 = document.createElement('div');
+	div2.className = "latex";
+	var answer = element2.appendChild(div2);
+	var an = document.createTextNode('$$'+result+'$$');
+	answer.appendChild(an);
+
+}
+
+function createmesurement(element,element2){
+	var div = document.createElement('div');
+    	div.className = "latex";
+	var equation = element.appendChild(div);
+	var f = Math.floor(Math.random() * 200)+1;
+	var c = Math.floor(Math.random() * 200)+1;
+	var sign = Math.floor(Math.random() * 100)-50;
+	var text;
+	var result; 
+	if (sign > 0){
+		sign = f;
+		text = 'Convert ' + f + ' inches to centemeters'
+		result = Math.round(f*2.54) + ' cm';
+	}else{
+		sign = c;
+		text = 'Convert ' + c + ' centemeters to inches'
+		result = Math.round(c/2.54)+' inches';
+	}
+	var eq = document.createTextNode(text);
+	equation.appendChild(eq);	
+
+	var div2 = document.createElement('div');
+	div2.className = "latex";
+	var answer = element2.appendChild(div2);
+	var an = document.createTextNode('$$'+result+'$$');
+	answer.appendChild(an);
+}
+
+
+function createmesurementrefined(element,element2){
+	var div = document.createElement('div');
+    	div.className = "latex";
+	var equation = element.appendChild(div);
+	var f = Math.floor(Math.random() * 12);
+	var f2 = Math.floor(Math.random() * 12);
+	var c = Math.floor(Math.random() * 100);
+	var c2 = Math.floor(Math.random() * 100);
+	var sign = Math.floor(Math.random() * 100)-50;
+	var text;
+	var result; 
+	if (sign > 0){
+		sign = f;
+		text = 'Convert ' + f2 + ' feet ' + f + ' inches to meters and centemeters'
+		result = Math.floor(((f2*12+f)*2.54) / 100) + ' m ' + Math.floor(((f2*12+f)*2.54) % 100) +' cm';
+	}else{
+		sign = c;
+		text = 'Convert ' + c2 + 'meters' + c + ' centemeters to feet and inches'
+		result = Math.floor(((c2*100+c)/2.54) / 12) + ' feet ' + Math.floor(((c2*100+c)/2.54) % 12) +' inches';
+	}
+	var eq = document.createTextNode(text);
+	equation.appendChild(eq);	
+
+	var div2 = document.createElement('div');
+	div2.className = "latex";
+	var answer = element2.appendChild(div2);
+	var an = document.createTextNode('$$'+result+'$$');
+	answer.appendChild(an);
+}
+
+
+function createmesurementmany(element,element2){
+	var div = document.createElement('div');
+    	div.className = "latex";
+	var equation = element.appendChild(div);
+	var list = [['mm','cm',0.1],
+		    ['mm','dm',0.01],
+		    ['mm','m',0.001],
+		    ['mm','hm',0.00001],
+		    ['mm','km',0.000001],
+		    ['mm','inch',0.03937008],
+		    ['mm','foot',0.00328084],
+		    ['mm','yard',0.00109361],
+		    ['mm','mi',0.00000062137],
+		    
+		    ['cm','mm',10],
+		    ['cm','dm',0.1],
+		    ['cm','m',0.01],
+		    ['cm','hm',0.0001],
+		    ['cm','km',0.00001],
+		    ['cm','inch',0.3937008],
+		    ['cm','foot',0.0328084],
+		    ['cm','yard',0.0109361],
+		    ['cm','mi',0.0000062137],
+		    
+		    ['dm','mm',100],
+		    ['dm','cm',10],
+		    ['dm','m',0.1],
+		    ['dm','hm',0.001],
+		    ['dm','km',0.0001],
+		    ['dm','inch',3.937008],
+		    ['dm','foot',0.328084],
+		    ['dm','yard',0.109361],
+		    ['dm','mi',0.000062137],
+		    
+		    ['m','mm',1000],
+		    ['m','cm',100],
+		    ['m','dm',10],
+		    ['m','hm',0.01],
+		    ['m','km',0.001],
+		    ['m','inch',39.37008],
+		    ['m','foot',3.28084],
+		    ['m','yard',1.09361],
+		    ['m','mi',0.00062137],
+
+		    ['hm','mm',100000],
+		    ['hm','cm',10000],
+		    ['hm','dm',1000],
+		    ['hm','m',100],
+		    ['hm','km',0.1],
+		    ['hm','inch',3937.00787],
+		    ['hm','foot',328.08399],
+		    ['hm','yard',109.36133],
+		    ['hm','mi',0.062137119],
+
+		    ['km','mm',1000000],
+		    ['km','cm',100000],
+		    ['km','dm',10000],
+		    ['km','m',1000],
+		    ['km','hm',10],
+		    ['km','inch',39370.0787],
+		    ['km','foot',3280.8399],
+		    ['km','yard',1093.6133],
+		    ['km','mi',0.62137119],
+
+		    ['inch','mm',25.4],
+		    ['inch','cm',2.54],
+		    ['inch','dm',0.254],
+		    ['inch','m',0.0254],
+		    ['inch','hm',0.000254],
+		    ['inch','km',0.0000254],
+		    ['inch','foot',0.08333333],
+		    ['inch','yard',0.02777778],
+		    ['inch','mi',0.00001578],
+
+		    ['foot','mm',304.8],
+		    ['foot','cm',30.48],
+		    ['foot','dm',3.048],
+		    ['foot','m',0.3048],
+		    ['foot','hm',0.003048],
+		    ['foot','km',0.0003048],
+		    ['foot','inch',12],
+		    ['foot','yard',0.33333333],
+		    ['foot','mi',0.00018939],
+
+		    ['yard','mm',914.4],
+		    ['yard','cm',91.44],
+		    ['yard','dm',9.144],
+		    ['yard','m',0.9144],
+		    ['yard','hm',0.009144],
+		    ['yard','km',0.0009144],
+		    ['yard','inch',36],
+		    ['yard','foot',3],
+		    ['yard','mi',0.00056818],
+
+		    ['mi','mm',1609344],
+		    ['mi','cm',160934.4],
+		    ['mi','dm',16093.44],
+		    ['mi','m',1609.344],
+		    ['mi','hm',16.09344],
+		    ['mi','km',1.609344],
+		    ['mi','inch',63360],
+		    ['mi','foot',5280],
+		    ['mi','yard',1760]];
+
+	var index = Math.floor(Math.random() * list.length);
+
+	var value = Math.floor(Math.random() * 100)+1;
+
+	var text;
+	var result; 
+
+	text = 'Convert ' + value + list[index][0] + '\'s to '+ list[index][1]+'\'s';
+	result = (value * list[index][2]) +' ' +list[index][1]+'\'s';
+
+	var eq = document.createTextNode(text);
+	equation.appendChild(eq);	
+
+	var div2 = document.createElement('div');
+	div2.className = "latex";
+	var answer = element2.appendChild(div2);
+	var an = document.createTextNode('$$'+result+'$$');
+	answer.appendChild(an);
+}
+
+
+
+function createareaproblem(element,element2){
+	var div = document.createElement('div');
+    	div.className = "latex";
+	var equation = element.appendChild(div);
+	var f1 = Math.floor(Math.random() * 100)+1;
+	var f2 = Math.floor(Math.random() * 100)+1;
+	var text;
+	var result; 
+
+	text = 'calculate area of a rectangle with side1=' + f1 + ' inches and side2=' + f2 + ' inches answer in feet'
+	result = (f1*f2)/12+' ft';
+
+	var eq = document.createTextNode(text);
+	equation.appendChild(eq);	
+
+	var div2 = document.createElement('div');
+	div2.className = "latex";
+	var answer = element2.appendChild(div2);
+	var an = document.createTextNode('$$'+result+'$$');
+	answer.appendChild(an);
+}
+
+function createinverseareaproblem(element,element2){
+	var div = document.createElement('div');
+    	div.className = "latex";
+	var equation = element.appendChild(div);
+	var f = Math.floor(Math.random() * 200)+1;
+	var text;
+	var result; 
+
+	text = 'calculate the side length of a square with area=' + f + ' inches answer in feet'
+	result = Math.sqrt(f)/12+' ft';
+
+	var eq = document.createTextNode(text);
+	equation.appendChild(eq);	
+
+	var div2 = document.createElement('div');
+	div2.className = "latex";
+	var answer = element2.appendChild(div2);
+	var an = document.createTextNode('$$'+result+'$$');
+	answer.appendChild(an);
+}
+
+function createareacircleproblem(element,element2){
+	var div = document.createElement('div');
+    	div.className = "latex";
+	var equation = element.appendChild(div);
+	var f = Math.floor(Math.random() * 200)+1;
+	var text;
+	var result; 
+
+	text = 'calculate the area of a circle with radious=' + f + ' inches answer in feet'
+	result = Math.pi*(f)*(f)/12+' ft';
+
+	var eq = document.createTextNode(text);
+	equation.appendChild(eq);	
+
+	var div2 = document.createElement('div');
+	div2.className = "latex";
+	var answer = element2.appendChild(div2);
+	var an = document.createTextNode('$$'+result+'$$');
+	answer.appendChild(an);
+}
+
+function createinverseareacircleproblem(element,element2){
+	var div = document.createElement('div');
+    	div.className = "latex";
+	var equation = element.appendChild(div);
+	var f = Math.floor(Math.random() * 200)+1;
+	var text;
+	var result; 
+
+	text = 'calculate the radious of a circle with area=' + f + ' inches answer in feet'
+	result = (Math.sqrt(f)/Math.pi)/12+' ft';
+
+	var eq = document.createTextNode(text);
+	equation.appendChild(eq);	
+
+	var div2 = document.createElement('div');
+	div2.className = "latex";
+	var answer = element2.appendChild(div2);
+	var an = document.createTextNode('$$'+result+'$$');
+	answer.appendChild(an);
+}
+
+
+
+function createfunction(element,element2){
+	var div = document.createElement('div');
+    	div.className = "latex";
+	var equation = element.appendChild(div);
+	var num1 = Math.floor(Math.random() * 9)+2;
+	var num2 = Math.floor(Math.random() * 3)+1;
+	var num3 = Math.floor(Math.random() * 9)+2;
+	var num4 = Math.floor(Math.random() * 9)+2;
+	var signnum1 = Math.floor(Math.random()*100)-50; 
+	var sign1;
+	if (signnum1 > 0){
+		sign1 = '';
+	}else{
+		sign1 = '-';
+	}
+	var signnum3 = Math.floor(Math.random()*100)-50; 
+	var sign3;
+	if (signnum3 > 0){
+		sign3 = '';
+	}else{
+		sign3 = '-';
+	}
+	var signnum = Math.floor(Math.random()*100)-50; 
+	var sign;
+	if (signnum > 0){
+		sign = '+';
+	}else{
+		sign = '-';
+	}
+	var eq = document.createTextNode('$$f(x)='+num3+'x^{'+num2+'}+'+num1+'\;f('+num4+')$$');
+	equation.appendChild(eq);
+}
+
+
+function createfunction2(element,element2){
+	var div = document.createElement('div');
+    	div.className = "latex";
+	var equation = element.appendChild(div);
+	var num1 = Math.floor(Math.random() * 9)+2;
+	var num2 = Math.floor(Math.random() * 9)+2;
+	var num3 = Math.floor(Math.random() * 9)+2;
+	var num4 = Math.floor(Math.random() * 9)+2;
+	var signnum1 = Math.floor(Math.random()*100)-50; 
+	var eq1 = '';
+	if(signnum1 > 0){
+		eq1 = num1+'x^{2}+';
+	}
+	var signnum2 = Math.floor(Math.random()*100)-50; 
+	var eq2 = '';
+	if(signnum2 > 0){
+		eq2 = num2+'x+';
+	}
+	var eq = document.createTextNode('$$f(x)='+eq1+eq2+num3+'\;f('+num4+')$$');
+	equation.appendChild(eq);
+}
+/**************************************************************************************/
+
+function creatTrianglePithagorean(element,element2){
+	var radius = 50;
+	var div = document.createElement('canvas');
+	div.style["width"] = "200px";
+	var ctx = div.getContext("2d");
+    	//div.className = "latex";
+	//div.className = "circle"
+	var rand = Math.floor(Math.random()*20)+21;
+	var rand2 = Math.floor(Math.random()*20)+1;
+	var rand3 = Math.floor(Math.random()*20)+1;
+	var rand4 = Math.floor(Math.random()*100)+1;
+
+	var rand5 = Math.floor(Math.random()*100)+1;
+	var rand6 = Math.floor(Math.random()*100)+1;
+	var rand7 = Math.floor(Math.random()*100)+1;
+	// the triangle
+	ctx.beginPath();
+	ctx.moveTo(10, 10);
+	ctx.lineTo(10, 150);
+	ctx.lineTo(150, 150);
+	ctx.closePath();
+	
+	// the outline
+	ctx.lineWidth = 10;
+	ctx.strokeStyle = "#FFCC00";
+	ctx.stroke();
+ 
+ 	// the fill color
+	ctx.fillStyle = "#FFCC00";
+	ctx.fill();
+	
+	ctx.beginPath();
+	ctx.rect(10,135,10,10);
+	ctx.strokeStyle = 'black';
+	ctx.stroke();
+ 
+
+    //var ansvalue = 0;
+	ctx.fillStyle = 'black';	
+	if(rand4 < 33){
+		if(rand7 < 50){
+			ctx.font = "bold 16px Arial";
+			ctx.fillText(rand2,5,90);//a
+			ctx.font = "bold 16px Arial";
+			ctx.fillText(rand,60,145);//o
+			
+			ctx.fillStyle = 'blue';
+			if(rand6 < 50){
+				ctx.font = "";
+				//ctx.fillText(rand5,15,50);
+				var ansvalue = rand2*Math.tan(rand5*(Math.PI/180));
+			}else{
+				//ctx.font = "";
+				//ctx.fillText(rand5,110,140);
+				var ansvalue = rand2/Math.tan(rand5*(Math.PI/180));
+			}
+			
+		}else{
+			ctx.font = "bold 16px Arial";
+			ctx.fillText(rand2,5,90);//a
+			ctx.font = "bold 16px Arial";
+			ctx.fillText(rand3,60,145);//o
+			
+			ctx.fillStyle = 'blue';
+			if(rand6 < 50){
+				//ctx.font = "";
+				//ctx.fillText(rand5,15,50);
+				var ansvalue = rand3/Math.tan(rand5*(Math.PI/180));
+			}else{
+				//ctx.font = "";
+				//ctx.fillText(rand5,110,140);
+				var ansvalue = rand3*Math.tan(rand5*(Math.PI/180));
+			}
+		}	
+	} else if ((33 <= rand4 ) && (rand4 < 66)){
+		if(rand7 < 50){
+			ctx.font = "bold 16px Arial";
+			ctx.fillText(rand2,5,90);//a
+			ctx.font = "bold 16px Arial";
+			ctx.fillText(rand3,60,85);//h
+			
+			ctx.fillStyle = 'blue';
+			if(rand6 < 50){
+				//ctx.font = "";
+				//ctx.fillText(rand5,15,50);
+				var ansvalue = rand2/Math.cos(rand5*(Math.PI/180));
+			}else{
+				//ctx.font = "";
+				//ctx.fillText(rand5,110,140);
+				var ansvalue = rand2/Math.sin(rand5*(Math.PI/180));
+			}
+		}else{
+			ctx.font = "bold 16px Arial";
+			ctx.fillText(rand3,5,90);//a
+			ctx.font = "bold 16px Arial";
+			ctx.fillText(rand,60,85);//h
+			
+			ctx.fillStyle = 'blue';
+			if(rand6 < 50){
+				//ctx.font = "";
+				//ctx.fillText(rand5,15,50);
+				var ansvalue = rand/Math.cos(rand5*(Math.PI/180));
+			}else{
+				//ctx.font = "";
+				//ctx.fillText(rand5,110,140);
+				var ansvalue = rand/Math.sin(rand5*(Math.PI/180));
+			}
+		}
+	} else {
+		if(rand7 < 50){
+			ctx.font = "bold 16px Arial";
+			ctx.fillText(rand,60,85);//h
+			ctx.font = "bold 16px Arial";
+			ctx.fillText(rand2,60,145);//o
+			
+			ctx.fillStyle = 'blue';
+			if(rand6 < 50){
+				//ctx.font = "";
+				//ctx.fillText(rand5,15,50);
+				var ansvalue = rand*Math.cos(rand5*(Math.PI/180));
+			}else{
+				//ctx.font = "";
+				//ctx.fillText(rand5,110,140);
+				var ansvalue = rand*Math.sin(rand5*(Math.PI/180));
+			}
+		}else{
+			ctx.font = "bold 16px Arial";
+			ctx.fillText(rand2,60,85);//h
+			ctx.font = "bold 16px Arial";
+			ctx.fillText(rand3,60,145);//o
+			
+			ctx.fillStyle = 'blue';
+			if(rand6 < 50){
+				//ctx.font = "";
+				//ctx.fillText(rand5,15,50);
+				var ansvalue = rand3/Math.cos(rand5*(Math.PI/180));
+			}else{
+				//ctx.font = "";
+				//ctx.fillText(rand5,110,140);
+				var ansvalue = rand3/Math.sin(rand5*(Math.PI/180));
+			}
+		}
+	}
+
+
+
+
+
+	var equation = element.appendChild(div);
+	var eq = document.createTextNode('');
+	equation.appendChild(eq);
+
+	var div2 = document.createElement('div');
+	div2.className = "latex";
+	var answer = element2.appendChild(div2);
+	var an = document.createTextNode('$$'+ansvalue+'$$');
+	answer.appendChild(an);
+
+}
+
+function creatTriangle(element,element2){
+	var radius = 50;
+	var div = document.createElement('canvas');
+	div.style["width"] = "200px";
+	var ctx = div.getContext("2d");
+    	//div.className = "latex";
+	//div.className = "circle"
+	var rand = Math.floor(Math.random()*20)+21;
+	var rand2 = Math.floor(Math.random()*20)+1;
+	var rand3 = Math.floor(Math.random()*20)+1;
+	var rand4 = Math.floor(Math.random()*100)+1;
+
+	var rand5 = Math.floor(Math.random()*100)+1;
+	var rand6 = Math.floor(Math.random()*100)+1;
+	var rand7 = Math.floor(Math.random()*100)+1;
+	// the triangle
+	ctx.beginPath();
+	ctx.moveTo(10, 10);
+	ctx.lineTo(10, 150);
+	ctx.lineTo(150, 150);
+	ctx.closePath();
+	
+	// the outline
+	ctx.lineWidth = 10;
+	ctx.strokeStyle = "#FFCC00";
+	ctx.stroke();
+ 
+ 	// the fill color
+	ctx.fillStyle = "#FFCC00";
+	ctx.fill();
+	
+	ctx.beginPath();
+	ctx.rect(10,135,10,10);
+	ctx.strokeStyle = 'black';
+	ctx.stroke();
+ 
+
+    //var ansvalue = 0;
+	ctx.fillStyle = 'black';	
+	if(rand4 < 33){
+		if(rand7 < 50){
+			ctx.font = "bold 16px Arial";
+			ctx.fillText(rand2,5,90);//a
+			ctx.font = "bold 16px Arial";
+			ctx.fillText("x",60,145);//o
+			
+			ctx.fillStyle = 'blue';
+			if(rand6 < 50){
+				ctx.font = "";
+				ctx.fillText(rand5,15,50);
+				var ansvalue = rand2*Math.tan(rand5*(Math.PI/180));
+			}else{
+				ctx.font = "";
+				ctx.fillText(rand5,110,140);
+				var ansvalue = rand2/Math.tan(rand5*(Math.PI/180));
+			}
+			
+		}else{
+			ctx.font = "bold 16px Arial";
+			ctx.fillText("x",5,90);//a
+			ctx.font = "bold 16px Arial";
+			ctx.fillText(rand3,60,145);//o
+			
+			ctx.fillStyle = 'blue';
+			if(rand6 < 50){
+				ctx.font = "";
+				ctx.fillText(rand5,15,50);
+				var ansvalue = rand3/Math.tan(rand5*(Math.PI/180));
+			}else{
+				ctx.font = "";
+				ctx.fillText(rand5,110,140);
+				var ansvalue = rand3*Math.tan(rand5*(Math.PI/180));
+			}
+		}	
+	} else if ((33 <= rand4 ) && (rand4 < 66)){
+		if(rand7 < 50){
+			ctx.font = "bold 16px Arial";
+			ctx.fillText(rand2,5,90);//a
+			ctx.font = "bold 16px Arial";
+			ctx.fillText("x",60,85);//h
+			
+			ctx.fillStyle = 'blue';
+			if(rand6 < 50){
+				ctx.font = "";
+				ctx.fillText(rand5,15,50);
+				var ansvalue = rand2/Math.cos(rand5*(Math.PI/180));
+			}else{
+				ctx.font = "";
+				ctx.fillText(rand5,110,140);
+				var ansvalue = rand2/Math.sin(rand5*(Math.PI/180));
+			}
+		}else{
+			ctx.font = "bold 16px Arial";
+			ctx.fillText("x",5,90);//a
+			ctx.font = "bold 16px Arial";
+			ctx.fillText(rand,60,85);//h
+			
+			ctx.fillStyle = 'blue';
+			if(rand6 < 50){
+				ctx.font = "";
+				ctx.fillText(rand5,15,50);
+				var ansvalue = rand/Math.cos(rand5*(Math.PI/180));
+			}else{
+				ctx.font = "";
+				ctx.fillText(rand5,110,140);
+				var ansvalue = rand/Math.sin(rand5*(Math.PI/180));
+			}
+		}
+	} else {
+		if(rand7 < 50){
+			ctx.font = "bold 16px Arial";
+			ctx.fillText(rand,60,85);//h
+			ctx.font = "bold 16px Arial";
+			ctx.fillText("x",60,145);//o
+			
+			ctx.fillStyle = 'blue';
+			if(rand6 < 50){
+				ctx.font = "";
+				ctx.fillText(rand5,15,50);
+				var ansvalue = rand*Math.cos(rand5*(Math.PI/180));
+			}else{
+				ctx.font = "";
+				ctx.fillText(rand5,110,140);
+				var ansvalue = rand*Math.sin(rand5*(Math.PI/180));
+			}
+		}else{
+			ctx.font = "bold 16px Arial";
+			ctx.fillText("x",60,85);//h
+			ctx.font = "bold 16px Arial";
+			ctx.fillText(rand3,60,145);//o
+			
+			ctx.fillStyle = 'blue';
+			if(rand6 < 50){
+				ctx.font = "";
+				ctx.fillText(rand5,15,50);
+				var ansvalue = rand3/Math.cos(rand5*(Math.PI/180));
+			}else{
+				ctx.font = "";
+				ctx.fillText(rand5,110,140);
+				var ansvalue = rand3/Math.sin(rand5*(Math.PI/180));
+			}
+		}
+	}
+
+
+
+
+
+	var equation = element.appendChild(div);
+	var eq = document.createTextNode('');
+	equation.appendChild(eq);
+
+	var div2 = document.createElement('div');
+	div2.className = "latex";
+	var answer = element2.appendChild(div2);
+	var an = document.createTextNode('$$'+ansvalue+'$$');
+	answer.appendChild(an);
+
+}
+
+
+function createcircle(element,element2){
+	var radius = 50;
+	var div = document.createElement('canvas');
+	div.style["width"] = "200px";
+	var ctx = div.getContext("2d");
+    	//div.className = "latex";
+	//div.className = "circle"
+	var rand = Math.floor(Math.random()*40);
+	var rand2 = Math.floor(Math.random()*40);
+	var shape = Math.floor(Math.random()*75);
+  	ctx.beginPath();
+	if(shape > 50){
+  		ctx.arc(radius,radius , radius, 0, 2*Math.PI);
+		ctx.fillStyle = 'green';
+  		ctx.fill();
+		ctx.fillStyle = 'white';
+		ctx.moveTo(radius,radius);
+		ctx.lineTo(radius*2,radius);
+		ctx.stroke();
+		ctx.font = "bold 16px Arial";
+		ctx.fillText(rand,65,40);
+	}else if(shape > 25){
+		ctx.rect(0,0,radius,radius);
+		ctx.fillStyle = 'green';
+  		ctx.fill();
+		ctx.fillStyle = 'black';
+		ctx.font = "bold 16px Arial";
+		ctx.fillText(rand,30,40);
+		ctx.font = "bold 16px Arial";
+		ctx.fillText(rand2,15,15);
+	}else{
+		// the triangle
+		ctx.beginPath();
+		ctx.moveTo(10, 10);
+		ctx.lineTo(10, 50);
+		ctx.lineTo(50, 50);
+		ctx.closePath();
+ 
+		// the outline
+		ctx.lineWidth = 10;
+		ctx.strokeStyle = "#FFCC00";
+		ctx.stroke();
+ 
+		// the fill color
+		ctx.fillStyle = "#FFCC00";
+		ctx.fill();
+
+		ctx.fillStyle = 'black';
+		ctx.font = "bold 16px Arial";
+		ctx.fillText(rand,30,55);
+		ctx.font = "bold 16px Arial";
+		ctx.fillText(rand2,5,30);
+	}
+
+	var equation = element.appendChild(div);
+	var eq = document.createTextNode('');
+	equation.appendChild(eq);
+}
+
+function createfraction(element,element2){
+	var div = document.createElement('div');
+    	div.className = "latex";
+	var equation = element.appendChild(div);
+	var num1 = Math.floor(Math.random() * 9)+2;
+	var num2 = Math.floor(Math.random() * 9)+2;
+	var num3 = Math.floor(Math.random() * 9)+2;
+	var num4 = Math.floor(Math.random() * 9)+2;
+	var signnum1 = Math.floor(Math.random()*100)-50; 
+	var sign1;
+	if (signnum1 > 0){
+		sign1 = '';
+	}else{
+		sign1 = '-';
+	}
+	var signnum3 = Math.floor(Math.random()*100)-50; 
+	var sign3;
+	if (signnum3 > 0){
+		sign3 = '';
+	}else{
+		sign3 = '-';
+	}
+	var signnum = Math.floor(Math.random()*100)-50; 
+	var sign;
+	if (signnum > 0){
+		sign = '+';
+	}else{
+		sign = '-';
+	}
+	var eq = document.createTextNode('$$\\frac{'+sign1+num1+'}{'+num2+'}'+sign+'\\frac{'+sign3+num3+'}{'+num4+'}=$$');
+	equation.appendChild(eq);
+}
+
+function createMixedRadical(element,element2){
+	var div = document.createElement('div');
+	div.className = "latex";
+	var equation = element.appendChild(div);
+	var num1 = Math.floor(Math.random() * 9)+2;
+	var num2 = Math.floor(Math.random() * 9)+2;
+	var eq = document.createTextNode('$$\\big(x^{'+num1+'}\\big)^{'+num2+'}=$$');
+	equation.appendChild(eq);
+}
+
+function createPureRadical(element,element2){
+	var div = document.createElement('div');
+    div.className = "latex";
+	var equation = element.appendChild(div);
+	var primes = [2,3,5,7,11,13]
+	var index = Math.floor(Math.random() * 3)+2;
+	var num1 = Math.floor(Math.random() * 9)+2;
+	var num2 = Math.floor(Math.random() * 9)+2;
+	var num3 = Math.floor(Math.random() * 9)+2;
+	var eq = document.createTextNode('$$\\big(x^{'+num1+'}*x^{'+num2+'}\\big)^{'+num3+'}=$$');
+
+	equation.appendChild(eq);
+}
+
+function createSubtraction(element,element2){
+	var div = document.createElement('div');
+	div.className = "latex";
+	var equation = element.appendChild(div);
+	var v1 = Math.floor(Math.random() * 100)-50; 
+	var v2 = Math.floor(Math.random() * 100)-50; 
+	var signnum = Math.floor(Math.random()*100)-50; 
+	var sign;
+	var signval = 1;
+	if (signnum > 0){
+		sign = '+';
+	}else{
+		sign = '-';
+		signval = -1;
+	}
+	var signnum1 = Math.floor(Math.random()*100)-50; 
+	var sign1;
+	var signval1 = 1;
+	var signval1app = 1;
+	if (signnum1 > 0){
+		sign1 = '';
+	}else{
+		sign1 = '-';
+		signval1 = -1;
+	}
+	var bracnum1 = Math.floor(Math.random()*100)-50; 
+	var brac1a = '';
+	var brac1b = '';
+	if (bracnum1 > 0){
+		brac1a = sign1+'(';
+		brac1b = ')';
+		signval1app = signval1;	
+	}
+	var signnum2 = Math.floor(Math.random()*100)-50; 
+	var sign2;
+	var signval2 = 1;
+	var signval2app = 1;
+	if (signnum2 > 0){
+		sign2 = '';
+	}else{
+		sign2 = '-';	
+		signval2 = -1;
+	}
+	var bracnum2 = Math.floor(Math.random()*100)-50; 
+	var brac2a = '';
+	var brac2b = '';
+	if (bracnum2 > 0){
+		brac2a = sign2+'(';
+		brac2b = ')';
+		signval2app = signval2;	
+	}
+	var signnum3 = Math.floor(Math.random()*100)-50; 
+	var sign3;
+	var signval3 = 1;
+	var signval3app = 1;
+	if (signnum3 > 0){
+		sign3 = '';
+	}else{
+		sign3 = '-';
+		signval3 = -1;
+	}
+	var bracnum3 = Math.floor(Math.random()*100)-50; 
+	var brac3a = '';
+	var brac3b = '';
+	if (bracnum3 > 0){
+		brac3a = sign3+'(';
+		brac3b = ')';
+		signval3app = signval3;
+	}
+
+	var eq = document.createTextNode('$$'+brac3a+brac1a+v1+brac1b+sign+brac2a+v2+brac2b+brac3b+'=$$');
+	equation.appendChild(eq);
+	return '$$'+signval3app*(signval1app*v1+signval*signval2app*v2)+'$$';
+}
+
+function createExponent(element,element2){
+	var div = document.createElement('div');
+	div.className = "latex";
+	var equation = element.appendChild(div);
+	var num1 = Math.floor(Math.random() * 100)-50; 
+	var num2 = Math.floor(Math.random() * 100)-50; 
+	var signnum = Math.floor(Math.random()*100)-50; 
+	var eq = document.createTextNode('$$x^{'+num1+'}x^{'+num2+'}=$$');
+	equation.appendChild(eq);
+	return 
+}
+
+function createExponentfraction(element,element2){
+	var div = document.createElement('div');
+	div.className = "latex";
+	var equation = element.appendChild(div);
+	var num1 = Math.floor(Math.random() * 100)-50; 
+	var num2 = Math.floor(Math.random() * 100)-50; 
+	var signnum = Math.floor(Math.random()*100)-50; 
+	var eq = document.createTextNode('$$\\frac{x^{'+num1+'}}{x^{'+num2+'}}=$$');
+	equation.appendChild(eq);
+}
+</script>
+</body>

@@ -1,0 +1,178 @@
+<html>
+<head>
+<script src="../edu-test.js"></script>
+<script src="../edu-helper.js"></script>
+<script src="../edu-interface.js"></script>
+<script src="../edu.js"></script>
+<style>
+body>table>tbody>tr>td{
+	vertical-align: top;
+	border-style: solid;
+}
+</style>
+</head>
+<body>
+
+<center><h1>Perform Multiply</h1></center>
+<center>
+This is the list of tests for the perform multiply function.
+<br>
+<a href="../test">Back</a>
+</center>
+
+<center><h3>Mult Zero</h3></center> 
+<table>
+<tr>
+<td>
+<%- include('test',{title: 'mult zero right',menu: 'zero_mult_1',equation: 'x=2*0',actionList: [{item: '2',action: 'preformMultiply'}],result: 'x=0'}); -%>
+</td>
+<td>
+<%- include('test',{title: 'mult zero left',menu: 'zero_mult_2',equation: 'x=0*4',actionList: [{item: '2',action: 'preformMultiply'}],result: 'x=0'}); -%>
+</td>
+<td>
+<%- include('test',{title: 'zero far left',menu: 'zero_mult_3',equation: 'x=0*4*1',actionList: [{item: '2',action: 'preformMultiply'}],result: 'x=0*1'}); -%>
+</td>
+<td>
+<%- include('test',{title: 'zero center left',menu: 'zero_mult_4',equation: 'x=1*0*4',actionList: [{item: '2',action: 'preformMultiply'}],result: 'x=0*4'}); -%>
+</td>
+<td>
+<%- include('test',{title: 'zero center right',menu: 'zero_mult_5',equation: 'x=1*0*4',actionList: [{item: '4',action: 'preformMultiply'}],result: 'x=1*0'}); -%>
+</td>
+<td>
+<%- include('test',{title: 'zero far right',menu: 'zero_mult_6',equation: 'x=1*4*0',actionList: [{item: '4',action: 'preformMultiply'}],result: 'x=1*0'}); -%>
+</td>
+</tr>
+<tr>
+<td>
+<%- include('test',{title: 'zero far left with plus',menu: 'zero_mult_plus_1',equation: 'x=0*4*2+1',actionList: [{item: '2',action: 'preformMultiply'}],result: 'x=0*2+1'}); -%>
+</td>
+<td>
+<%- include('test',{title: 'one far left',menu: 'zero_mult_plus_2',equation: 'x=1+0*4*2',actionList: [{item: '4',action: 'preformMultiply'}],result: 'x=1+0*2'}); -%>
+</td>
+</tr>
+<tr>
+<td>
+<%- include('test',{title: 'zero variable right',menu: 'zero_mult_7',equation: 'x=x*0',actionList: [{item: '2',action: 'preformMultiply'}],result: 'x=0'}); -%>
+</td>
+<td>
+<%- include('test',{title: 'zero variable left',menu: 'zero_mult_8',equation: 'x=0*x',actionList: [{item: '2',action: 'preformMultiply'}],result: 'x=0'}); -%>
+</td>
+</tr>
+</table>
+
+<center><h3>Mult One</h3></center> 
+<table>
+<tr>
+<td>
+<%- include('test',{title: 'mult one right',menu: 'one_mult_1',equation: 'x=2*1',actionList: [{item: '2',action: 'preformMultiply'}],result: 'x=2'}); -%>
+</td>
+<td>
+<%- include('test',{title: 'mult one left',menu: 'one_mult_2',equation: 'x=1*4',actionList: [{item: '2',action: 'preformMultiply'}],result: 'x=4'}); -%>
+</td>
+<td>
+<%- include('test',{title: 'one far left',menu: 'one_mult_3',equation: 'x=1*4*2',actionList: [{item: '2',action: 'preformMultiply'}],result: 'x=4*2'}); -%>
+</td>
+<td>
+<%- include('test',{title: 'one center left',menu: 'one_mult_4',equation: 'x=3*1*4',actionList: [{item: '2',action: 'preformMultiply'}],result: 'x=3*4'}); -%>
+</td>
+<td>
+<%- include('test',{title: 'one center right',menu: 'one_mult_5',equation: 'x=1*2*4',actionList: [{item: '2',action: 'preformMultiply'}],result: 'x=2*4'}); -%>
+</td>
+<td>
+<%- include('test',{title: 'one far right',menu: 'one_mult_6',equation: 'x=4*2*1',actionList: [{item: '4',action: 'preformMultiply'}],result: 'x=4*2'}); -%>
+</td>
+</tr>
+<tr>
+<td>
+<%- include('test',{title: 'one far left',menu: 'one_mult_plus_1',equation: 'x=1*4*2+1',actionList: [{item: '2',action: 'preformMultiply'}],result: 'x=4*2+1'}); -%>
+</td>
+<td>
+<%- include('test',{title: 'one far left',menu: 'one_mult_plus_2',equation: 'x=1+1*4*2',actionList: [{item: '4',action: 'preformMultiply'}],result: 'x=1+4*2'}); -%>
+</td>
+</tr>
+<tr>
+<td>
+<%- include('test',{title: 'one variable right',menu: 'one_mult_7',equation: 'x=x*1',actionList: [{item: '2',action: 'preformMultiply'}],result: 'x=x'}); -%>
+</td>
+<td>
+<%- include('test',{title: 'one variable left',menu: 'one_mult_8',equation: 'x=1*x',actionList: [{item: '2',action: 'preformMultiply'}],result: 'x=x'}); -%>
+</td>
+</tr>
+</table>
+
+<center><h3>Mult Numbers</h3></center> 
+<table>
+<tr>
+<td>
+<%- include('test',{title: 'mult two numbers',menu: 'simple_mult_1',equation: 'x=2*3',actionList: [{item: '2',action: 'preformMultiply'}],result: 'x=6'}); -%>
+</td>
+<td>
+<%- include('test',{title: 'mult number middle',menu: 'simple_mult_2',equation: 'x=2*7*6*4',actionList: [{item: '4',action: 'preformMultiply'}],result: 'x=2*42*4'}); -%>
+</td>
+</tr>
+</table>
+
+<center><h3>Mult Variables</h3></center> 
+<table>
+<tr>
+<td>
+<%- include('test',{title: 'mult two x',menu: 'variable_mult_1',equation: '5=x*x',actionList: [{item: '2',action: 'preformMultiply'}],result: '5=x^2'}); -%>
+</td>
+<td>
+<%- include('test',{title: 'mult x and num times x',menu: 'variable_mult_2',equation: '5=2*x*x',actionList: [{item: '4',action: 'preformMultiply'}],result: '5=2*x^2'}); -%>
+</td>
+</tr>
+</table>
+
+<center><h3>Mult Functions</h3></center> 
+<table>
+<tr>
+<td>
+<%- include('test',{title: 'add two function',menu: 'function_mult_1',equation: '5=(x)*(x)',actionList: [{item: '3',action: 'preformMultiply'}],result: '5=(x)^2'}); -%>
+</td>
+<td>
+<%- include('test',{title: 'add two function plus 1',menu: 'function_mult_2',equation: '5=(x+1)+(x+1)',actionList: [{item: '5',action: 'preformMultiply'}],result: '5=(x+1)^2'}); -%>
+</td>
+<td>
+<%- include('test',{title: 'add function and num times function',menu: 'function_mult_3',equation: '5=2*(x+1)*(x+1)',actionList: [{item: '7',action: 'preformMultiply'}],result: '5=2*(x+1)^2'}); -%>
+</td>
+<td>
+<%- include('test',{title: 'add two num times function',menu: 'function_mult_4',equation: '5=2*(x+1)*(x+1)*(x+1)',actionList: [{item: '7',action: 'preformMultiply'}],result: '5=2*(x+1)^2*(x+1)'}); -%>
+</td>
+</tr>
+</table>
+
+
+<center><h3>Mult Exponents</h3></center> 
+<table>
+<tr>
+<td>
+<%- include('test',{title: 'add two function',menu: 'function_add_1',equation: '5=(x)^2*(x)',actionList: [{item: '4',action: 'preformMultiply'}],result: '5=(x)^(2+1)'}); -%>
+</td>
+<td>
+<%- include('test',{title: 'add two function plus 1',menu: 'function_add_2',equation: '5=(x+1)^2*(x+1)^3',actionList: [{item: '6',action: 'preformMultiply'}],result: '5=(x+1)^(2+3)'}); -%>
+</td>
+</tr>
+</table>
+
+<center><h3>Mult Fractions</h3></center> 
+todo: we need to deal with fractions with multiplications on top and bottom
+<table>
+<tr>
+<td>
+<%- include('test',{title: 'mult two fractions',menu: 'fraction_mult_1',equation: '5=x/2*x/5',actionList: [{item: '4',action: 'preformMultiply'}],result: '5=(x*x)/(2*5)'}); -%>
+</td>
+<td>
+<%- include('test',{title: 'mult two fractions',menu: 'fraction_mult_2',equation: '5=(x+1)/2*6/(x+1)',actionList: [{item: '7',action: 'preformMultiply'}],result: '5=((x+1)*6)/(2*(x+1))'}); -%>
+</td>
+<td>
+<%- include('test',{title: 'mult fraction function left',menu: 'fraction_mult_3',equation: '5=(4+x)*6/x',actionList: [{item: '5',action: 'preformMultiply'}],result: '5=(x+1)^(2+3)'}); -%>
+</td>
+<td>
+<%- include('test',{title: 'mult fraction function right',menu: 'fraction_mult_4',equation: '5=(x+1)/3*(2+3)',actionList: [{item: '7',action: 'preformMultiply'}],result: '5=x*x/3*(2+3)'}); -%>
+</td>
+</tr>
+</table>
+
+</body>
+</html>

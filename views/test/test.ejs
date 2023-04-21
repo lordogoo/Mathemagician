@@ -1,0 +1,36 @@
+<div id="<%= menu %>">
+<table>
+<tr>
+<td colspan="2">
+<center><%= title %></center>
+</td>
+</tr>
+<tr>
+<td>
+<%= equation %>
+</td>
+</tr>
+<tr>
+<td>
+<%- include('../partials/equationTop') %>
+</td>
+<td>
+<div id="<%= menu %>_result">
+</div>
+</td>
+</tr>
+</table>
+<script>
+{
+let menu = '<%= menu %>';
+let equationData = GenerateFromString("equationData",document,menu,true,false,'<%= equation %>');
+<% for(let i = 0; i < actionList.length; i++) { %>
+select(equationData,'item<%= actionList[i].item %>')
+MathemagicianPerformList.<%= actionList[i].action %>(equationData)
+<% } %>
+//todo check result of equation
+let result = testEquation(equationData,'<%= result %>');
+displayResult(menu,result)
+}
+</script>
+</div>

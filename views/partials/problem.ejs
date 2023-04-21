@@ -1,0 +1,12 @@
+<%
+function checkLessons(lesson){
+	for(let i = 0; i < lessonlist.length; i++){
+		if(lessonlist[i] === lesson){
+			return true;
+		}
+	}
+	return false;
+}
+%>
+
+<button id="lesson_<%= lesson %>" <% if(checkLessons(lesson) == true){ %> style="background-color: lightgreen" <% } %> onClick="QuestionClick('<%= menu %>','<%= equation %>','<%= lesson %>')"><%= title %></button>

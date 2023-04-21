@@ -1,0 +1,429 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<style>
+.vertical-center {
+  margin: 0;
+  position: absolute;
+  display:block;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+</style>
+<link rel="stylesheet" href="css/interface.css">
+<link rel="stylesheet" href="css/speechbubble.css">
+<link rel="stylesheet" href="css/particles.css">
+<script src="edu-helper.js"></script>
+<script src="edu-interface.js"></script>
+<script src="edu.js"></script>
+<script src="three.js"></script>
+<script src="GLTFLoader.js"></script>
+<script>
+function SinglePlayerClick(){
+	HandleTransition("SinglePlayer");
+}
+
+function MultiPlayerClick(){
+	HandleTransition("MultiPlayerGameMode");
+}
+
+function SinglePlayerBackClick(){
+	HandleTransition("Menu");
+}
+
+function MenuBackClick(){
+	HandleTransition("Menu");
+}
+
+function EduResetClick(){
+	clearGame(globalThis.currentActiveMenu);
+	GenerateFromString("Edu",globalThis.currentEquation);
+}
+
+function EduBackClick(){
+	clearGame(globalThis.currentActiveMenu);
+	HandleTransition("SinglePlayer");
+}
+
+function FinishBackClick(){
+	HandleTransition("SinglePlayer");
+}
+
+
+
+function LogoutClick(){
+	HandleNavigate("logout");
+	/*
+	DisableButtons(true);
+	DisableInputs(true);
+	let post = "logout";
+	let url = "\logout"
+	let xhttp = new XMLHttpRequest();
+	xhttp.withCredentials = true;
+	xhttp.onreadystatechange = function() {
+        	if (this.readyState == 4 && this.status == 200) {
+			console.log(this.responseText);
+			let responsevalue = JSON.parse(this.responseText);
+			console.log(responsevalue);
+			if(responsevalue.message == "<font color='green'>Logout succesfull</font>"){
+				var allCookies = document.cookie.split(';');
+                		for (var i = 0; i < allCookies.length; i++){
+                    			document.cookie = allCookies[i] + "=;expires=" + new Date(0).toUTCString();
+				}
+				HandleNavigate(url);
+			}else{
+				DisableButtons(false);
+				DisableInputs(false);
+			}
+       		}
+    	};
+  	xhttp.open('POST', url, true);
+	xhttp.setRequestHeader('Content-type', 'application/json; charset=UTF-8');
+	xhttp.send(post);
+	*/
+}
+
+function LessonLoad(){
+	let post = "lesson";
+	let url = "\lesson"
+	let xhttp = new XMLHttpRequest();
+	xhttp.withCredentials = true;
+	xhttp.onreadystatechange = function() {
+        	if (this.readyState == 4 && this.status == 200) {
+			let responsevalue = JSON.parse(this.responseText);
+
+       		}
+    	};
+  	xhttp.open('GET', url, true);
+	xhttp.setRequestHeader('Content-type', 'application/json; charset=UTF-8');
+	xhttp.send(post);
+}
+
+function LessonFinish(){
+}
+
+function OnMenuChangeEnd(MenuName){
+	let menu = document.getElementById(MenuName);
+	//EnableDefaultGameButtons();
+	if(menu.classList.contains('connecter')){
+		HandleConnection();
+	}
+	if(menu.classList.contains('ready')){
+		HandleReady();
+	}
+}
+
+function EnableDefaultGameButtons(){
+	//todo make this more generic
+	document.getElementById("gameCreateAdder").disabled = false;
+	document.getElementById("gameCreateSubtractor").disabled = false;
+	document.getElementById("gameCreateMultiplier").disabled = false;
+	document.getElementById("gameCreateDivisor").disabled = false;
+	document.getElementById("gameCreateExponent").disabled = false;
+	document.getElementById("gameReset").disabled = false;
+	document.getElementById("gameBack").disabled = false;
+}
+
+
+function MP_SelectEquation(){
+	document.getElementById("MP_EditEquation").disabled = false;
+	document.getElementById("MP_DeleteEquation").disabled = false;
+	document.getElementById("MP_Play").disabled = false;
+}
+
+
+
+</script>
+</head>
+<body background="textures/nebula.png" class="ParticleAnimation" style="overflow: hidden;">
+
+<div class="animation-wrapper">
+	<div class="particle particle-1"></div>
+	<div class="particle particle-2"></div>
+ 	<div class="particle particle-3"></div>
+ 	<div class="particle particle-4"></div>
+</div>
+
+
+
+<!-- 
+***********************************
+user info
+***********************************
+-->
+<div id="UserInfo" style="z-index: 10;position: absolute;top:10px;right:10px;" class="buttonList menu">
+<center>
+<table>
+<tr>
+<td>
+<center>
+<div id="username"></div>
+</center>
+</td>
+</tr>
+<tr>
+<td>
+<center>
+<button id="profile" onclick="ProfileClick()" >Profile</button>
+<br>
+<button id="shop" onclick="" >Profile</button>
+</center>
+</td>
+</tr>
+</table>
+</center>
+</div>
+
+<!-- 
+***********************************
+textbox
+***********************************
+-->
+<div id="SpeachBubble" style="z-index: 9;left:-10000px;" class="talk-bubble tri-right border round">
+  <div class="talktext">
+	<center>
+    		<p id="SpeachBubbleText">Now we add a border and it looks like a comic. Uses .border .round and .btm-left-in</p>
+	</center>
+  </div>
+</div>
+
+<!-- 
+***********************************
+three.js overlay canvas
+***********************************
+-->
+<canvas id="overlay" style="position: fixed;left: 0;top: 0;z-index: 8;pointer-events: none;height: 100%;width: 100%" ></canvas>
+
+<!-- 
+***********************************
+loading bar
+***********************************
+-->
+<div id="Loading" style="margin-Top: -50% !important;" class="buttonList vertical-center menu">
+<center>Loading</center>
+<div id="adLinkb"></div>
+</div>
+
+<!-- 
+***********************************
+Menu
+***********************************
+-->
+<div id="Menu" style="margin-Top: -50% !important;" class="buttonList vertical-center menu">
+<center>
+<image src="images/MathmagicianLogo.png"></image>
+<table>
+<tr>
+<td>
+<center>
+<button id="single" onclick="SinglePlayerClick()" >Single Player</button>
+</center>
+</td>
+</tr>
+</table>
+</center>
+</div>
+
+<!-- 
+***********************************
+profile data
+***********************************
+-->
+
+<div id="ProfileData" style="margin-Top: -50% !important;" class="buttonList vertical-center menu">
+<div>
+<center><button id="eqBack" onclick="LogoutClick()">Logout</button></center>
+
+<table>
+<tr>
+<!-- todo integrate values-->
+<td>total battles: 5</td>
+<td>won: 2</td>
+<td>lost: 3</td>
+</tr>
+</table>
+
+<table>
+<tr>
+<!-- todo integrate values-->
+<td>casual battles: 5</td>
+<td>won: 2</td>
+<td>lost: 3</td>
+</tr>
+</table>
+
+<table>
+<tr>
+<!-- todo integrate values-->
+<td>ranked battles: 0</td>
+<td>won: 0</td>
+<td>lost: 0</td>
+</tr>
+<tr>
+<td>rank: 1</td>
+</tr>
+</table>
+
+</div>
+<center><button id="eqBack" onclick="HandleTransition('ScoreGraph')">High Scores</button></center>
+<br>
+<center><button id="eqBack" onclick="ProfileBack()">Back</button></center>
+</div>
+
+<!-- 
+***********************************
+Score Graph
+***********************************
+-->
+
+<div id="ScoreGraph" style="margin-Top: -50% !important;" class="buttonList vertical-center menu">
+<div>
+<table>
+<% for(let i = 0; i < scoregraph.length; i++){ %>
+	<tr><td><%= scoregraph[i].index %></td><td><%= scoregraph[i].user %></td><tr>
+<% } %>
+</table>
+</div>
+<center><button id="eqBack" onclick="HandleTransition('ProfileData')">Back</button></center>
+</div>
+
+***********************************
+Single Player
+***********************************
+-->
+
+<%- include('./partials/SinglePlayer') %>
+
+<!-- 
+***********************************
+scripts
+***********************************
+-->
+
+<script type="module">
+import * as Wizard from "./wizards.js"
+import * as Dialog from "./dialog.js"
+
+//todo testcode
+document.getElementById("xneck").value = 0;
+document.getElementById("yneck").value = 0;
+document.getElementById("zneck").value = 0;
+
+globalThis.currentLesson = '';
+globalThis.currentEquation = '';
+globalThis.currentActiveMenu = 'Loading';
+globalThis.startDialog = function(lesson){
+	globalThis.currentDialog = Dialog.getDialog(lesson);
+}
+
+var dialogIndex = 0;
+globalThis.currentDialog;
+
+let user;
+let allCookies = document.cookie.split(';');
+for (var i = 0; i < allCookies.length; i++){
+	if(allCookies[i].trim().startsWith("username=")){
+                user = allCookies[i].trim().substring(allCookies[i].trim().indexOf('=') + 1);
+	}
+}
+const username = document.getElementById("username");
+username.innerText = user;
+
+//loading bar
+let loading = true;
+globalThis.loadingFrame = 0;
+globalThis.loadingMaxFrame = 0;
+function animateLoadingBar() {
+  	if(loading){
+  		let output = '[';
+  		for (var i = 0; i < globalThis.loadingMaxFrame; i++) {
+    			output += i > globalThis.loadingFrame ? '&nbsp;' : '/';
+  		}
+  		output += ']';
+  		document.getElementById('adLinkb').innerHTML = output;
+  		if(globalThis.loadingFrame == globalThis.loadingMaxFrame) {
+			loading = false;
+    			HandleTransition("Menu");
+  		}
+	}
+}
+
+//graphics
+let active3d = false;
+let overlayCanvas = document.getElementById("overlay");
+let overlayScene;
+let overlayCamera;
+let overlayRenderer;
+let gltfLoader;
+
+globalThis.wizardlist;
+function graphics(){
+	if(overlayCanvas !== null){
+
+		overlayScene = new THREE.Scene();
+		overlayCamera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
+		const frustum = new THREE.Frustum();
+		frustum.setFromProjectionMatrix( overlayCamera.projectionMatrix );
+		frustum.setFromProjectionMatrix(new THREE.Matrix4().multiplyMatrices(overlayCamera.projectionMatrix, overlayCamera.matrixWorldInverse));
+
+
+		overlayRenderer = new THREE.WebGLRenderer({ canvas: overlayCanvas, alpha: true });
+		overlayRenderer.setSize( window.innerWidth, window.innerHeight );
+		document.body.appendChild( overlayRenderer.domElement );
+
+		gltfLoader = new THREE.GLTFLoader();
+
+		globalThis.wizardlist = [];
+		for(var i = 0; i < Wizard.directions.length;i++){
+			globalThis.wizardlist.push(new Wizard.Wizard(Wizard.directions[i],Wizard.directions[i],frustum,gltfLoader,physicsWorld,overlayScene))
+		}
+
+		const overlayLight = new THREE.PointLight(0xffffff);
+		overlayLight.position.set(5,5,5);
+		overlayScene.add(overlayLight);
+
+		overlayCamera.position.z = 5;
+		active3d = true;
+	}
+}
+
+let physicsWorld;
+let figure;
+
+function animate() {
+	requestAnimationFrame( animate );
+
+	animateLoadingBar()
+	animateMenu(OnMenuChangeEnd);
+	animateConnection();
+	animateReady();
+	animateGame();
+
+	//animate 3d
+	if(active3d){
+		if((globalThis.currentDialog != null) && (globalThis.currentDialog.current < globalThis.currentDialog.actions.length)){
+			globalThis.currentDialog.actions[globalThis.currentDialog.current].run();
+		}
+
+		for(let i = 0; i < globalThis.wizardlist.length; i++){
+			globalThis.wizardlist[i].update();
+		}
+		overlayRenderer.render( overlayScene, overlayCamera);
+	}
+
+};
+
+
+
+graphics();
+animate();
+
+
+//Ammo().then( start );
+
+
+</script>
+</body>
+</html>

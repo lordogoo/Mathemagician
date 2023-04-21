@@ -1,0 +1,31 @@
+.menu{
+	border:4px double #DEBB07;
+	background-color:#FCFADD;
+}
+#leftdiv {
+    width: 350px;
+    height: 70px;
+    padding: 10px;
+    border: 1px solid #aaaaaa;
+    display: block;
+    text-align: center;
+}
+#rightdiv {
+    width: 350px;
+    height: 70px;
+    padding: 10px;
+    border: 1px solid #aaaaaa;
+    display: block;
+    text-align: center;
+}
+#adLinkb {
+  font-size: 12px;
+  color: #000;
+  font-family: monospace;
+}
+
+button {
+	background-color:#f3f3f3;
+}
+
+.tab { margin-left: 40px; }

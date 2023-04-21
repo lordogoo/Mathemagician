@@ -1,0 +1,96 @@
+<!-- 
+***********************************
+connecting
+***********************************
+-->
+
+<div id="CasualMatching" style="margin-Top: -50% !important;" class="buttonList vertical-center menu connecter casual">
+<center>
+matching with casual player
+</br>
+finding player
+</br>
+<div id="abConnecting">...</div>
+</br>
+<button id="eqBack" onclick="cancelMatchClick()">Cancel</button>
+</center>
+</div>
+
+<!-- 
+***********************************
+match
+***********************************
+-->
+
+<div id="CasualMatch" style="margin-Top: -50% !important;" class="buttonList vertical-center menu ready casual">
+
+<table>
+<tr>
+<td></td>
+<td><center><div id="abTimer" class="timer">30</div><center></td>
+<td></td>
+</tr>
+<tr>
+<td style='width:100px'>
+<center>
+player
+<br>
+<div id="playerName"></div>
+<span id="playerready">not ready</span>
+</center>
+</td>
+<td>
+<center>vs</center>
+</td>
+<td style='width:100px'>
+<center>
+opponent
+<br>
+<div id="opponentName">test opponent</div>
+<span id="opponentready">not ready</span>
+</center>
+</td>
+</tr>
+<tr>
+<td></td>
+<td><button id="eqReady" onclick="readyClick()">Ready</button></center></td>
+<td></td>
+</table>
+</div>
+
+<!-- 
+***********************************
+game
+***********************************
+-->
+<!--todo we need to make sure that the width and height of this the same as the single player interface-->
+
+<div id="CasualGame" style="margin-Top: -50% !important;" class="buttonList vertical-center">
+<div>
+<div style="position:relative;width:687px;height:288px;">
+<div id="CasualGameOpponent" onmouseover="MouseOverZPlus(this)" onmouseleave="MouseOverZMinus(this)" style="position: absolute;z-index: -2;top:-150px;" class="menu">
+<input id="numberCreatorText" type="hidden" ></input> 
+<input id="variableCreatorButton" type="hidden" ></input>
+<%- include('./equationTop') %>
+</div>
+<div id="CasualGamePlayer" style="position: absolute;" class="menu">
+<center><div id="abTimer" class="timer">30</div></center>
+<center><button onclick="ForfitClick()">Forfit</button></center>
+<%- include('./equation',{equationMetaDataVariable:"globalThis.equationDataPlayer"}) %>
+</div>
+</div>
+</div>
+</div>
+
+<!-- 
+***********************************
+conclusion
+***********************************
+-->
+
+<div id="CasualConclusion" style="margin-Top: -50% !important;" class="buttonList vertical-center menu">
+<center>
+<div id="endmessage">Failure</div>
+<button id="eqBack" onclick="HandleTransition('MultiPlayerGameMode')">Done</button>
+</center>
+</div>

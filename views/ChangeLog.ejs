@@ -1,0 +1,170 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<style>
+.vertical-center {
+  margin: 0;
+  position: absolute;
+  display:block;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+.menu{
+	border:4px double #DEBB07;
+	background-color:#FCFADD;
+}
+</style>
+<link rel="stylesheet" href="css/interface.css">
+<link rel="stylesheet" href="css/particles.css">
+<script src="edu-interface.js"></script>
+<script>
+//sets scroll when page is reloaded. prevents screen items from moving off screen.
+if (history.scrollRestoration) {
+    history.scrollRestoration = 'manual';
+} else {
+    window.onbeforeunload = function () {
+        window.scrollTo(0, 0);
+    }
+}
+
+function TestClick(){
+	HandleNavigate("test");
+}
+
+function OkClick(){
+	HandleNavigate("login");
+}
+</script>
+</head>
+<body class="ParticleAnimation" background="textures/nebula.png" style="overflow: hidden;">
+
+<div class="animation-wrapper">
+	<div class="particle particle-1"></div>
+	<div class="particle particle-2"></div>
+ 	<div class="particle particle-3"></div>
+ 	<div class="particle particle-4"></div>
+</div>
+
+<!-- 
+***********************************
+changelog
+***********************************
+-->
+
+<div id="Menu"  style="margin-Top: -50% !important;" class="buttonList vertical-center menu">
+
+<div style="max-height:500px;overflow-Y:scroll;border: 1px solid black;" class="scrollable">
+
+Roadmap<br>
+1)finish the algibra engine
+<div class="tab">1.1) finish division rules</div>
+<div class="tab">1.2) finish factorization rules</div>
+<div class="tab">1.3) finish fraction rules</div>
+<div class="tab">1.4) finish exponents rules</div>
+<div class="tab">1.5) finish polynomial rules(include polynomial division)</div>
+<div class="tab">1.6) make sure all rules are reversable</div>
+2)finish lesson plan
+<div class="tab">2.1)add problems that teach all the rules</div>
+<div class="tab">2.2)add randomized challenge problems</div>
+3)build multiplayer
+<div class="tab">3.1)add ability to create,edit and save equations(done)</div>
+<div class="tab">3.2)add ability to select created equation(done)</div>
+<div class="tab">3.3)create casual play(done)</div>
+<div class="tab">3.4)create ranked play</div>
+<div class="tab">3.5)create tourniment play</div>
+<div class="tab">3.6)create ranking and play history for players</div>
+4)art and design
+<div class="tab">4.1)finish wizard animations</div>
+<div class="tab">4.2)create dialog and infographics for tutorials</div>
+<div class="tab">4.3)finialize sound design and music</div>
+5)testing and bugfixes
+<div class="tab">5.1) testing</div>
+<div class="tab">5.2) bugfixing</div>
+6)Potential future work
+<div class="tab">logarithms</div>
+<div class="tab">triganomatry</div>
+<div class="tab">complex numbers</div>
+<div class="tab">calculus</div>
+<div class="tab">sums and products</div>
+<div class="tab">vectors and matrices</div>
+<br>
+
+
+
+Currently working on:
+<div class="tab">-make login work for accounts with game codes</div>
+<div class="tab">-create shop</div>
+<div class="tab">-create automated tests for equation operations</div>
+<div class="tab">-create automated tests for equation rules</div>
+<div class="tab">-fix addition, subtraction, multiplication bugs</div>
+<div class="tab">-in addition test section put in add to negative tests</div>
+<div class="tab">-double negative broken</div>
+<div class="tab">-refactor edu library</div>
+
+<br>
+
+Current Bugs:
+<div class="tab">-shop and profile tabs wont return to the right interfaces durring a match</div>
+<div class="tab">-uuids sometimes brake due to invalid characters</div>
+<div class="tab">-in equation creator the finish state can be triggered. this should not be possible</div> 
+<div class="tab">-automated tests doesnt recognize exponents</div>
+<div class="tab">-single player challenges arent working</div>
+<div class="tab">-create adder both sides creates on the wrong side. also doesnt work for create subtractor and divider. might want to add new rules for subtractor and divide to retain functionaliy because dispite not being correct could still be useful.</div>
+<div class="tab">-the rule checks on the server to check if a move is valid in multiplayer arent working. always returns false.</div>
+
+Version:0.3
+<div class="tab">-added change number functionality to equation creator</div>
+
+<br>
+
+Version:0.2(Current Version)
+<div class="tab">-added button that converts subtract symbol to multiplied negative 1</div>
+<div class="tab">-removing brackets no longer works if subtraction sign is outside on left</div>
+<div class="tab">-added checkbox that adds a multiplied x to create adder and create subtractor</div>
+<div class="tab">-added ability to save, edit and delete equations</div>
+<div class="tab">-created web soccet server for multiplayer</div>
+<div class="tab">-added ability to add/subtract variables from both sides</div>
+<div class="tab">-changed create multiply and divide to disable when zero is selected</div>
+<div class="tab">-rule buttons are now disabling properly</div>
+<div class="tab">-add link to tests from changelog</div>
+<div class="tab">-Finished:Multiplying two numbers causes other values in multiplication to dissapear</div>
+<div class="tab">-Finished:stm negative dosent create negative 1 when target is a multiplies</div>
+<div class="tab">-Finished:equation loader doesnt recognize negative in beginning</div>
+<div class="tab">-Finished:equation loader doesnt work with negative x</div>
+<div class="tab">-fixed: reloading page sometimes caused it to scroll when scrolling should not be possible. This was due to the screen trying to compinsate for off screen components.</div>
+<div class="tab">-Finished:need to add ability to multiply and divide both sides by a variable</div>
+
+<br>
+
+Version:0.1(Current Version)
+<div class="tab">-First release version</div>
+<div class="tab">-Algibra engine add, subtract and multiply rules working but has bugs</div>
+<div class="tab">-Multiplayer create equation has been mocked up. Multiplayer still needs actual functionality.</div>
+<div class="tab">-Casual multiplayer mode has been mocked up. Multiplayer still needs actual functionality.</div>
+
+</div>
+<center>
+<button onclick="TestClick()">Tests</button>
+<br>
+<button onclick="OkClick()">Back</button>
+</center>
+</div>
+
+
+
+
+<script>
+globalThis.currentActiveMenu = 'Menu';
+
+function animate() {
+	requestAnimationFrame( animate );
+
+	animateMenu();
+};
+animate();
+</script>
+</body>
+</html>

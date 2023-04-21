@@ -1,0 +1,152 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<style>
+.vertical-center {
+  margin: 0;
+  position: absolute;
+  display:block;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+.menu{
+	border:4px double #DEBB07;
+	background-color:#FCFADD;
+}
+</style>
+<link rel="stylesheet" href="./css/interface.css">
+<link rel="stylesheet" href="./css/particles.css">
+<script src="./edu-interface.js"></script>
+<script>
+
+//sets scroll when page is reloaded. prevents screen items from moving off screen.
+if (history.scrollRestoration) {
+    history.scrollRestoration = 'manual';
+} else {
+    window.onbeforeunload = function () {
+        window.scrollTo(0, 0);
+    }
+}
+
+function CreateClick(){
+	HandleNavigate("create");
+}
+
+function ForgotClick(){
+	HandleNavigate("forgot");
+}
+
+function loginReturnValue() {
+        	if (this.readyState === XMLHttpRequest.DONE) {
+			if(this.status === 0 || (this.status >= 200 && this.status < 400)){
+				console.log(this.responseText)
+				let responsevalue = JSON.parse (this.responseText.replace(/\\/g,''));
+            			message.innerHTML = responsevalue.message;
+				if(responsevalue.message == "<font color='green'>Login succesfull</font>"){
+					document.cookie = 'session=' + responsevalue.session;
+					document.cookie = 'username=' + responsevalue.username;
+					HandleNavigate("mathematician");
+				}else{
+					DisableButtons(false);
+					DisableInputs(false);
+				}
+			}
+       		}else if(this.readyState == 2){
+			if(this.status >= 400){
+				message.innerHTML = "connection error: "+this.status;
+				DisableButtons(false);
+				DisableInputs(false);
+			}
+		}
+    	};
+
+function LoginClick(){
+	DisableButtons(true);
+	DisableInputs(true);
+	let message = document.getElementById("message");
+	let user = document.getElementById("user");
+	let password = document.getElementById("pwd");
+
+	let postObj = { 
+    		username: user.value.trim(), 
+    		password: password.value.trim() 
+	}
+	let post = JSON.stringify(postObj);
+
+	let url = "login"
+  	let xhttp = new XMLHttpRequest();
+	xhttp.withCredentials = true;
+	xhttp.onreadystatechange = loginReturnValue;
+  	xhttp.open('POST', url, true);
+	xhttp.setRequestHeader('Content-type', 'application/json; charset=UTF-8');
+	xhttp.send(post);
+}
+</script>
+</head>
+<body class="ParticleAnimation" background="./textures/nebula.png" style="overflow: hidden;">
+
+<div class="animation-wrapper">
+	<div class="particle particle-1"></div>
+	<div class="particle particle-2"></div>
+ 	<div class="particle particle-3"></div>
+ 	<div class="particle particle-4"></div>
+</div>
+
+<!-- 
+***********************************
+Login
+***********************************
+-->
+<div id="Menu"  style="margin-Top: -50% !important;" class="buttonList vertical-center menu">
+<center>Mathemagician Login</center>
+<center>
+<table>
+
+<tr><td><center>
+User Name
+</center></td></tr>
+
+<tr><td><center>
+<input type="text" id="user" name="user">
+</center></td></tr>
+
+<tr><td><center>
+Password
+</center></td></tr>
+
+<tr><td><center>
+<input type="password" id="pwd" name="pwd">
+</center></td></tr>
+
+<tr><td><center>
+<button id="login" onclick="LoginClick()"  >Login</button>
+</center></td></tr>
+
+<tr><td><center>
+<p id="message"></p>
+</center></td></tr>
+
+<tr><td><center>
+<button onclick="CreateClick()">Sign Up</button>/<button onclick="ForgotClick()">Forgot Password</button>
+<br>
+<button onclick="HandleNavigate('changelog')">Change Log</button>
+</center></td></tr>
+</table>
+</center>
+</div>
+
+<script>
+globalThis.currentActiveMenu = 'Menu';
+
+function animate() {
+	requestAnimationFrame( animate );
+
+	animateMenu();
+};
+animate();
+</script>
+</body>
+</html>

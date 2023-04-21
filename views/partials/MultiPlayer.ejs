@@ -1,0 +1,105 @@
+<!-- 
+***********************************
+multi player game menu
+***********************************
+-->
+
+<div id="MultiPlayerGameMode" style="margin-Top: -50% !important;" class="buttonList vertical-center menu">
+<table>
+<tr>
+<td>
+<button id="mpCasual" style="width:100%;" onclick="MultiplayerCasualClick()">Casual</button>
+<br>
+<image style="width:200px;height:200px;"></image>
+</td>
+<td>
+<button id="mpRanked" class="startdisabled" style="width:100%;" onclick="HandleTransition('RankedMatching')">Ranked</button>
+<br>
+<image style="width:200px;height:200px;"></image>
+</td>
+<td>
+<button id="mpTourniment" class="startdisabled" style="width:100%;" onclick="HandleTransition('TournimentMatching')">Tourniment</button>
+<br>
+<image style="width:200px;height:200px;"></image>
+</td>
+</tr>
+</table>
+</br>
+<center><button id="eqBack" onclick="HandleTransition('Menu')">Back</button></center>
+</div>
+
+<!-- 
+***********************************
+Choose Equation
+***********************************
+-->
+
+<div id="MultiPlayerChooseEquation" style="margin-Top: -50% !important;" class="buttonList vertical-center menu">
+<center>
+equation list
+</br>
+<div style="overflow-y:scroll;">
+<table id="ChooseEquationList">
+<% for(let i = 0; i < equationlist.length; i++){ %>
+	<tr id="id<%= equationlist[i].id %>">
+		<td><%= equationlist[i].name %></td>
+		<td><button onclick="equationDeleteClick('<%= equationlist[i].id %>')">delete</button></td>
+		<td><button onclick="equationEditClick('<%= equationlist[i].id %>','<%= equationlist[i].name %>','<%= equationlist[i].eq %>')">edit</button></td>
+		<td><button onclick="equationPlayClick('<%= equationlist[i].id %>','<%= equationlist[i].name %>','<%= equationlist[i].eq %>')">play</button></td>
+	</tr>
+<% } %>
+</table>
+
+</div>
+<button id="MP_CreateEquation" onclick="EquationCreateClick()" >Create</button>
+</br>
+<button id="multiplayback" onclick="HandleTransition('MultiPlayerGameMode')" >Back</button>
+</center>
+</div>
+
+<!-- 
+***********************************
+create edu
+***********************************
+-->
+
+<div id="CreateEdu" style="margin-Top: -50% !important;" class="buttonList vertical-center menu">
+<center>
+
+name: <input type="text" id="newEquationName" ></input></center>
+
+<%- include('./equationTop') %>
+<center><input id="NumberChangeInput" type="number" value="0"></input><button class="rulebutton startdisabled" id="changeValue" onclick="MathemagicianPerformList.performChange(globalThis.equationData)" >Change Number</button></center>
+<%- include('./equationBottom',{equationMetaDataVariable:'globalThis.equationData'}) %>
+
+<center>
+<div id="Message"></div>
+<button id="eqSave" onclick="EduSaveClick()">Save</button>
+<button id="eqReset" onclick="EduResetClick()">Reset</button>
+<button id="eqBack" onclick="HandleTransition('MultiPlayerChooseEquation')">Back</button>
+</center>
+</div>
+
+<!-- 
+***********************************
+casual match
+***********************************
+-->
+
+<%- include('./MPCasual') %>
+
+<!-- 
+***********************************
+ranked match
+***********************************
+-->
+
+<%- include('./MPRanked') %>
+
+<!-- 
+***********************************
+tourniment match
+***********************************
+-->
+
+<%- include('./MPTourniment') %>
